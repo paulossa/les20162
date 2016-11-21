@@ -1,0 +1,10 @@
+[Atividade]
+  id, titulo, categoria[trabalho/lazer], prioridade, foto[byte[]], tags
+[TI]
+  id, atividade_id, tempo_investido
+
+[User]
+  ?
+
+Como usuário, cadastro uma prioridade para cada uma de minhas atividades, e essas prioridades são mostradas em todos os relatórios de uso do meu tempo, para que assim eu saiba se estou investindo mais tempo nas atividades mais importantes.
+ - Salvar localmente?
