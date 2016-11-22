@@ -1,5 +1,5 @@
 [Atividade]
-  id, titulo, categoria[trabalho/lazer], prioridade, foto[byte[]], tags
+  id, owner (Id de User), titulo, categoria[trabalho/lazer], prioridade, foto[byte[]], tags
 [TI]
   id, atividade_id, tempo_investido, date_created
 [User]
