@@ -1,0 +1,111 @@
+swagger: '2.0'
+info:
+  title: Pra onde vai meu tempo?
+  description: The application that helps you know better how you spend your time
+  version: "1.0.0"
+host: les-piloto.andreleite.me
+schemes:
+  - http
+  - https
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /activity:
+    post:
+      description: Creates a new activity for a User.
+      parameters:
+        - $ref: "#/parameters/post_ActivityPayload"
+        - $ref: "#/parameters/post_pic"
+      responses:
+        201:
+          description: Activity created
+        404:
+          description: The user does not exist
+      tags:
+        - Activity
+    get:
+      description: Returns all activities for a User or filters them using the parameters
+      parameters:
+        - $ref: "#/parameters/get_ActivityPayload"
+      responses:
+        200:
+          description: Matching activities
+        404:
+          description: No activities found
+        409:
+          description: User does not exist
+      tags:
+        - Activity
+
+parameters:
+  post_ActivityPayload:
+    name: payload
+    in: body
+    description: Payload used to create an activity for a user
+    required: true
+    schema:
+      $ref: "#/definitions/post_activity"
+  post_pic:
+    name: pic
+    in: formData
+    description: Picture or image
+    required: false
+    type: file
+  get_ActivityPayload:
+    name: payload
+    in: body
+    description: Payload used to fetch activities for a user
+    required: true
+    schema:
+      $ref: "#/definitions/get_activity"
+
+definitions:
+  post_activity:
+    type: object
+    required: ['user_id', 'title']
+    properties:
+      user_id:
+        type: string
+      title:
+        type: string
+      category:
+        type: string
+        default: work
+        enum: [
+                work,
+                leisure
+              ]
+      priority:
+        type: string
+        default: low
+        enum: [
+                low,
+                medium,
+                high
+              ]
+      tags:
+        type: string
+  get_activity:
+    type: object
+    required: ['user_id']
+    properties:
+      user_id:
+        type: string
+      title:
+        type: string
+      category:
+        type: string
+        enum: [
+                work,
+                leisure
+              ]
+      priority:
+        type: string
+        enum: [
+                low,
+                medium,
+                high
+              ]
+      tags:
+        type: string
