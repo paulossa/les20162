@@ -2,6 +2,13 @@ package les
 
 class Activity {
 
-    static constraints = {
-    }
+  String title
+  String category
+  String tags
+
+  static hasMany = [tis: TimeInvested]
+
+  static constraints = {
+    title (unique: true)
+  }
 }

@@ -2,6 +2,11 @@ package les
 
 class TimeInvested {
 
-    static constraints = {
-    }
+  Double hours
+
+  static belongsTo = [activity: Activity]
+
+  static constraints = {
+    hours (min: 0.0d, max: 24.0d)
+  }
 }
