@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
+<head>
+  <link rel="stylesheet" type="text/css" href="../assets/stylesheets/bootstrap.css">
+  <script src="../assets/javascripts/bootstrap.js"></script>
+</head>
 
 <html>
 <body>
@@ -9,7 +13,7 @@
 <p>Nome do Usuario</p>
 
 <h2>Minhas Tarefas</h2>
-<table style="width:50%; border: 1px solid black;">
+<table class="table" style="width:50%;">
   <tr>
     <th>Titulo</th>
     <th></th>
@@ -40,7 +44,7 @@
   </tr>
 </table>
 <br>
-<button> Criar Nova Tarefa </button>
+<button class="btn btn-default"> Criar Nova Tarefa </button>
 
 </body>
 </html>
