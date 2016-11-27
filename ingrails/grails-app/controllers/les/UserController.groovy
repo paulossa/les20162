@@ -7,11 +7,11 @@ class UserController {
       if (session.user){
         redirect uri: '/'
       }
+      render view:'login' , model: [usr: null]
     }
 
     def authenticate() {
       def user = User.findByUuid(params.id)
-
       if (!user) {
         def newUser = new User(givenName: params?.givenName, dName: params?.displayName, picUrl: params?.picUrl, email: params?.email, uuid: params?.id)
         if (newUser.validate()){

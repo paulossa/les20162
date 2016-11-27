@@ -15,5 +15,7 @@ $(document).ready(function() {
   console.log(btn);
   btn.click(function() {
     console.log('yeah');
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut()
   });
 });

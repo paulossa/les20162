@@ -7,20 +7,33 @@
     <asset:javascript src="jquery.js"/>
     <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
     <script>
+
+
     function onSuccess(googleUser) {
         var profile = googleUser.getBasicProfile();
-        gapi.client.load('plus', 'v1', function () {
+            gapi.client.load('plus', 'v1', function () {
             var request = gapi.client.plus.people.get({
                 'userId': 'me'
             });
+
+            var userLoggedLocally = gapi.auth2.getAuthInstance().isSignedIn.get();
+            var userLoggedRemotely = ${usr != null};
+
+            if (!userLoggedRemotely && userLoggedLocally){
+              gapi.auth2.getAuthInstance().signOut().then(function() { console.log('Logged out'); });
+            }
             request.execute(function (resp) {
+                //
+                // console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
+                // console.log(${usr});
+
                 if (resp.id) {
                   $('input[name=givenName]').val(resp.name.givenName);
                   $('input[name=displayName]').val(resp.displayName);
                   $('input[name=picUrl]').val(resp.image.url);
                   $('input[name=email]').val(resp.emails[0].value);
                   $('input[name=id]').val(resp.id);
-                  // $('form').submit()
+                  $('form').submit()
                 }
             });
         });
@@ -47,7 +60,6 @@
         auth2.signOut().then(function() {
           document.getElementById('prof').innerHTML = '';
           document.getElementById('gSignIn').style.display = 'block';
-
         });
       }
     </script>

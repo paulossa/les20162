@@ -10,6 +10,7 @@ class AuthInterceptor {
   }
 
     boolean before() {
+      println "Session user $session.user"
       if (!session?.user && (actionName != "login")){
         redirect controller: 'user', action: 'login'
         return false
