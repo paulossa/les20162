@@ -15,4 +15,8 @@ class User {
     givenName nullable: true
     dName blank: true, nullable: true
   }
+
+  String toString() {
+    dName
+  }
 }

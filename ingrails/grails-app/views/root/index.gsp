@@ -3,6 +3,7 @@
 <head>
   <link rel="stylesheet" type="text/css" href="../assets/stylesheets/bootstrap.css">
   <script src="../assets/javascripts/bootstrap.js"></script>
+  <title>POvMT - Para Onde vai Meu Tempo</title>
 </head>
 
 <html>
@@ -10,7 +11,7 @@
 
 <h1>Início</h1>
 
-<p>Nome do Usuario</p>
+<p>${usr}</p>
 
 <h2>Minhas Tarefas</h2>
 <table class="table" style="width:50%;">
