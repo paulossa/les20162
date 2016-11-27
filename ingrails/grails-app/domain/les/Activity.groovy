@@ -6,9 +6,13 @@ class Activity {
   String category
   String tags
 
+  User owner
+
   static hasMany = [tis: TimeInvested]
 
   static constraints = {
-    title (unique: true)
+    title unique: true
+    category nullable: true
+    tags nullable: true
   }
 }

@@ -2,6 +2,8 @@ package les
 
 class UserController {
 
+    static utilService
+
     def index() { }
     def login() {
       if (session.user){
@@ -33,5 +35,12 @@ class UserController {
     def logout() {
       session.user = null
       redirect action: 'login'
+    }
+
+    def populateDb() {
+      10.times {
+        def a = new Activity(title: "Title = ${it}", owner: session.user).save()
+      }
+      redirect uri: '/'
     }
 }
