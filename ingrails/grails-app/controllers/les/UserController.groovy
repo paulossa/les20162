@@ -16,6 +16,7 @@ class UserController {
         def newUser = new User(givenName: params?.givenName, dName: params?.displayName, picUrl: params?.picUrl, email: params?.email, uuid: params?.id)
         if (newUser.validate()){
           newUser.save(flush:true)
+          Thread.sleep(500)
         } else {
           response.status = 401
           flash.message = "Seu login é inconsistente."
