@@ -10,6 +10,9 @@ class UrlMappings {
         }
 
         "/"(controller: "root", view:"/index")
+        "/history"(view:"/history")
+        "/newtask"(view:"/newTask")
+        "/addTi"(view:"/addTime")
         "500"(view:'/error')
         "404"(view:'/notFound')
         "/foo/bar"(view: "/home")
