@@ -5,6 +5,7 @@
     <title>Google Login</title>
     <meta name="google-signin-client_id" content="686461622790-esursav91456althgbjg3d2mka2gedgg.apps.googleusercontent.com">
     <script src="jquery.min.js"></script>
+    <asset:javascript src="jquery-2.2.0.min.js"/>
     <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
     <script>
     function onSuccess(googleUser) {
@@ -14,12 +15,19 @@
                 'userId': 'me'
             });
             request.execute(function (resp) {
-                var profileHTML = '<div class="profile"><div class="head">Welcome '+resp.name.givenName+'! <a href="javascript:void(0);" onclick="signOut();">Sign out</a></div>';
-                profileHTML += '<img src="'+resp.image.url+'"/><div class="proDetails"><p>'+resp.displayName+'</p><p>'+resp.emails[0].value+'</p><p>'+resp.id+'</p></div></div>';
-                document.getElementById('prof').innerHTML = profileHTML;
-                document.getElementById('gSignIn').style.display = 'none';
+                //var profileHTML = '<div class="profile"><div class="head">Welcome '+resp.name.givenName+'! <a href="javascript:void(0);" onclick="signOut();">Sign out</a></div>';
+                //profileHTML += '<img src="'+resp.image.url+'"/><div class="proDetails"><p>'+resp.displayName+'</p><p>'+resp.emails[0].value+'</p><p>'+resp.id+'</p></div></div>';
+                // document.getElementById('prof').innerHTML = profileHTML;
+                // document.getElementById('gSignIn').style.display = 'none';
 
-                // TO-DO call authenticate action in the server passins resp data as params
+                if (resp.name.givenName) {
+                  $('input[name=givenName]').val(resp.name.givenName);
+                  $('input[name=displayName]').val(resp.displayName);
+                  $('input[name=picUrl]').val(resp.image.url);
+                  $('input[name=email]').val(resp.emails[0].value);
+                  $('input[name=id]').val(resp.id);
+                  // $('form').submit()
+                }
             });
         });
     }
@@ -43,10 +51,14 @@
     function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function() {
+
+          $.ajax({url: "${createLink(controller: 'user', action: 'logout')}", success: function(result){
+            console.log("User logged out");
+          }});
           document.getElementById('prof').innerHTML = '';
           document.getElementById('gSignIn').style.display = 'block';
 
-          // TO-DO logout from server as well 
+          // TO-DO logout from server as well
         });
       }
     </script>
@@ -56,6 +68,15 @@
     <div id="gSignIn"></div>
 
     <div id = "prof" class="userContent"></div>
+
+    <g:form action="authenticate">
+      <input type="hidden" name="givenName" value="">
+      <input type="hidden" name="displayName" value="">
+      <input type="hidden" name="picUrl" value="">
+      <input type="hidden" name="email" value="">
+      <input type="hidden" name="id" value="">
+      <input type="submit" value="Login">
+    </g:form>
 
     <style>
         .profile {

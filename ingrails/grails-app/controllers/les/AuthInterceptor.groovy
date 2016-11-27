@@ -6,9 +6,12 @@ class AuthInterceptor {
   AuthInterceptor() {
     matchAll()
       .excludes(controller: 'user', action: 'login')
+      .excludes(controller: 'user', action: 'authenticate')
   }
 
     boolean before() {
+      println "before before ${session.user}" 
+
       if (!session?.user && (actionName != "login")){
         redirect controller: 'user', action: 'login'
         return false
