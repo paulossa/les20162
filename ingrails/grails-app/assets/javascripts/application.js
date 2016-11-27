@@ -10,12 +10,10 @@
 //= require_tree .
 //= require_self
 
-if (typeof jQuery !== 'undefined') {
-    (function($) {
-        $('#spinner').ajaxStart(function() {
-            $(this).fadeIn();
-        }).ajaxStop(function() {
-            $(this).fadeOut();
-        });
-    })(jQuery);
-}
+$(document).ready(function() {
+  var btn =   $(".logout-btn");
+  console.log(btn);
+  btn.click(function() {
+    console.log('yeah');
+  });
+});
