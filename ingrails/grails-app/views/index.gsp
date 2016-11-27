@@ -1,15 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<meta charset="UTF-8">
 <head>
-    <title>POvMT - Para Onde vai Meu Tempo?</title>
-    <meta name="google-signin-client_id" content="686461622790-esursav91456althgbjg3d2mka2gedgg.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
-    <asset:javascript src="jquery.js" />
-    <asset:javascript src="application.js" />
+  <link rel="stylesheet" type="text/css" href="../assets/stylesheets/bootstrap.css">
+  <script src="../assets/javascripts/bootstrap.js"></script>
 </head>
 
+<html>
 <body>
-    <a href="${createLink(controller: 'user', action: 'logout')}" class="logout-btn">Logout</a>
+
+<h1>Início</h1>
+
+<p>Nome do Usuario</p>
+
+<h2>Minhas Tarefas</h2>
+<table class="table" style="width:50%;">
+  <tr>
+    <th>Titulo</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>Task 1</td>
+    <td>
+      <button>Add TI</button>
+      <button>Remover</button>
+      <button>Editar</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Task 2</td>
+    <td>
+      <button>Add TI</button>
+      <button>Remover</button>
+      <button>Editar</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Task 3</td>
+    <td>
+      <button>Add TI</button>
+      <button>Remover</button>
+      <button>Editar</button>
+    </td>
+  </tr>
+</table>
+<br>
+<button class="btn btn-default"> Criar Nova Tarefa </button>
+
 </body>
 </html>
