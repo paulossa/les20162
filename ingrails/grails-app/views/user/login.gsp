@@ -19,7 +19,7 @@
                 document.getElementById('prof').innerHTML = profileHTML;
                 document.getElementById('gSignIn').style.display = 'none';
 
-
+                // TO-DO call authenticate action in the server passins resp data as params
             });
         });
     }
@@ -45,15 +45,14 @@
         auth2.signOut().then(function() {
           document.getElementById('prof').innerHTML = '';
           document.getElementById('gSignIn').style.display = 'block';
+
+          // TO-DO logout from server as well 
         });
       }
     </script>
 </head>
 
 <body>
-
-    <h1>Real page is <a href="/user/login">here </a></h1>
-
     <div id="gSignIn"></div>
 
     <div id = "prof" class="userContent"></div>

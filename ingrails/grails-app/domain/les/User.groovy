@@ -2,6 +2,12 @@ package les
 
 class User {
 
-    static constraints = {
-    }
+  String givenName
+  String diplayName
+  String picUrl
+  String email
+  String id
+
+  static constraints = {
+  }
 }
