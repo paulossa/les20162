@@ -38,7 +38,7 @@
                 </tr>
             </table>
             <br>
-            <button class="btn btn-success pull-right" onclick="location.href = 'newtask';">Criar Nova Tarefa </button>
+            <a class="btn btn-primary pull-right btn-criar-tarefa" href="${createLink(controller: 'Activity', action: 'create')}">Criar Nova Tarefa </a>
         </div>
 
         <!-- Modal -->

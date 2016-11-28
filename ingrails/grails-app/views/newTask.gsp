@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="layout" content="main">
-    <title>Criar tarefa</title>
+    <title>Cadastrar atividade</title>
     <asset:stylesheet src="bootstrap.css" />
     <asset:stylesheet src="application.css" />
     <asset:javascript src="jquery.js" />
