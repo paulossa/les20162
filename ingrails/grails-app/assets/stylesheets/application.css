@@ -13,3 +13,4 @@
 *= require mobile
 *= require_self
 */
+body { padding-top: 70px; }
