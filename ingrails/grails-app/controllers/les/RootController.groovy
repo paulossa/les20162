@@ -2,8 +2,10 @@ package les
 
 class RootController {
 
+  def utilService
+
     def index() {
-      render view: 'index', model: [usr: session.user]
+      render view: 'index', model: [usr: session.user, activities: utilService.getActivities(session.user)]
     }
 
     def populateDb() {

@@ -13,30 +13,26 @@
 
 <body>
     <div id="container">
-        <div class="container-fluid">
+        <div class="container-fluid" style="height:100%;">
+
             <h2 class="centered">Minhas Tarefas</h2>
-            <table class="table">
-                <tr>
-                    <th>Titulo</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>Task 1</td>
-                    <td>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#addTimeModal" id="addTI">Add TI</button>
+            <g:each var="activity" in="${activities}">
+              <div class="activity-card">
+                <span class="title">
+                  ${activity.title}
+                </span>
+                <div class="activity-btns">
+                  <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" class="btn btn-primary">Add TI</a>
+                  <a href="#${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning">Editar</a>
+                  <a href="#" class="btn btn-danger">Remover</a>
+                </div>
+              </div>
+            </g:each>
+
+                        <!-- <button class="btn btn-primary"  data-target="#addTimeModal" id="addTI">Add TI</button>
                         <button class="btn btn-danger">Remover</button>
-                        <button class="btn btn-default" onclick="location.href = 'newtask';">Editar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Task 2</td>
-                    <td>
-                        <button class="btn btn-default">Add TI</button>
-                        <button class="btn btn-default">Remover</button>
-                        <button class="btn btn-default">Editar</button>
-                    </td>
-                </tr>
-            </table>
+                        <button class="btn btn-default" onclick="location.href = 'newtask';">Editar</button> -->
+
             <br>
             <a class="btn btn-primary pull-right btn-criar-tarefa" href="${createLink(controller: 'Activity', action: 'create')}">Criar Nova Tarefa </a>
         </div>

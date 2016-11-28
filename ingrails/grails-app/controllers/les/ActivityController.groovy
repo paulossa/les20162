@@ -46,7 +46,7 @@ class ActivityController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'activity.label', default: 'Activity'), activity.id])
-                forward uri: '/'
+                redirect uri: '/'
             }
             '*' { respond activity, [status: CREATED] }
         }

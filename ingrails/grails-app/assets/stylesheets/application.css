@@ -13,10 +13,12 @@
 *= require mobile
 *= require_self
 */
-body { padding-top: 70px; }
+body { }
 
 html, body {
+  margin-top: 25px;
   height: 100%;
+  background-color: white;
 }
 
 a:hover {
@@ -25,8 +27,24 @@ a:hover {
 }
 
 /*Custom CSS */
+.activity-card {
+  margin-top: 1em;
+  border: 1px dashed #ddd;
+}
+
+.activity-card .title {
+  font-style: oblique;
+  font-size: 1.2em;
+  text-align: center;
+  margin-left: 2em;
+  text-decoration: underline;
+}
+.activity-card .activity-btns {
+  text-align: center;
+}
+
 .btn-criar-tarefa {
-  position: absolute;
+
   bottom: 3em;
   right: 2em;
 }
