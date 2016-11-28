@@ -18,16 +18,22 @@ class ActivityController {
     }
 
     def create() {
-        respond new Activity(params)
+        def a = new Activity(params)
+        a.owner = session.user
+        respond a
     }
 
     @Transactional
     def save(Activity activity) {
+      println "Tryign to save $activity ${session.user.id}"
         if (activity == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
+
+
+        activity.owner = User.findById(session.user.id)
 
         if (activity.hasErrors()) {
             transactionStatus.setRollbackOnly()
@@ -40,7 +46,7 @@ class ActivityController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'activity.label', default: 'Activity'), activity.id])
-                redirect activity
+                forward uri: '/'
             }
             '*' { respond activity, [status: CREATED] }
         }

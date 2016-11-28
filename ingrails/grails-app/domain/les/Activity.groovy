@@ -17,4 +17,8 @@ class Activity {
     tags nullable: true
     description nullable: true
   }
+
+  String toString() {
+    title
+  }
 }
