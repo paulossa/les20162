@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class TimeInvestedController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "GET", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -21,6 +21,18 @@ class TimeInvestedController {
         respond new TimeInvested(params)
     }
 
+    def createTi() {
+      println "APara mos $params"
+      
+      def a = Activity.findById(params["activity.id"])
+      if (a){
+          def t = new TimeInvested(hours: params.get('hours'), activity: a)
+          t.save(flush: true)
+      } else {
+        response.status = 401
+      }
+    }
+
     @Transactional
     def save(TimeInvested timeInvested) {
         if (timeInvested == null) {
@@ -29,7 +41,10 @@ class TimeInvestedController {
             return
         }
 
+        println "Saving time invested"
+
         if (timeInvested.hasErrors()) {
+            println " jAS errros "
             transactionStatus.setRollbackOnly()
             respond timeInvested.errors, view:'create'
             return

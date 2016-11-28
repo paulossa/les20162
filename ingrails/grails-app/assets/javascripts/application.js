@@ -17,4 +17,26 @@ $(document).ready(function() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut()
   });
+
+  $(".add-ti").on('click', function(){
+    var activityClicked = $(this).data().activityid;
+    console.log("Add to activity "+ activityClicked);
+    $("#activity-id-form").val(activityClicked);
+  });
+
+  $("#activity-id-form-btn").on('dblclick', function(){
+    var aid = $("#activity-id-form").val();
+    var hours = $("input[name=ti]") .val();
+    var jqxhr = $.ajax( "/timeInvested/createTi?activity.id=" + aid + "&hours=" + hours)
+      .done(function() {
+        $("#activity-id-form").val("");
+        $("input[name=ti]") .val("0");
+      })
+      .fail(function() {
+        alert( "Um erro aconteceu. Tente mais tarde." );
+      })
+      .always(function() {
+        $("#activity-form-dismiss").click();
+      });
+  });
 });

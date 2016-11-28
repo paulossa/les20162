@@ -22,7 +22,7 @@
                   ${activity.title}
                 </span>
                 <div class="activity-btns">
-                  <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" class="btn btn-primary">Add TI</a>
+                  <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn btn-primary add-ti">Add TI</a>
                   <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning">Editar</a>
                   <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn btn-danger">Remover</a>
                 </div>
@@ -50,14 +50,15 @@
                         <fieldset>
                           <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Tempo Investido</span>
-                            <input type="number" class="form-control" name="ti" id="ti" aria-describedby="basic-addon1">
+                            <input type="hidden" name="activity-id" value="" id="activity-id-form">
+                            <input type="number" step="0.5" class="form-control" name="ti" id="ti" aria-describedby="basic-addon1" value="0" min="0">
                           </div>
                         </fieldset>
                       </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Submeter</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="activity-form-dismiss">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="activity-id-form-btn">Submeter</button>
                     </div>
                 </div>
             </div>

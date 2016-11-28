@@ -92,6 +92,7 @@ class ActivityController {
             return
         }
 
+        TimeInvested.executeUpdate("delete from TimeInvested where activity.id=${activity.id}")
         Activity.executeUpdate("delete from Activity where id=${activity.id}")
         chain controller: "root", action:"index", model: [usr: session.user, activities: utilService.getActivities(session.user)]
     }
