@@ -26,14 +26,14 @@
 
 				<br>
 				<div class="input-group">
-				  <span class="input-group-addon" id="basic-addon1">Descrição</span>
-				  <input type="text" class="form-control" aria-describedby="basic-addon1">
+				  <span class="input-group-addon" id="basic-addon2">Descrição</span>
+				  <input type="text" class="form-control" aria-describedby="basic-addon2">
 				</div>
 
 				<br>
 				<div class="input-group">
-				  <span class="input-group-addon" id="basic-addon1">Data</span>
-				  <input type="text" class="form-control" aria-describedby="basic-addon1">
+				  <span class="input-group-addon" id="basic-addon3">Data</span>
+				  <input type="text" class="form-control" aria-describedby="basic-addon3">
 				</div>
 
 				<br>
