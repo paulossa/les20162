@@ -19,4 +19,7 @@ class User {
   String toString() {
     dName
   }
+  static mapping = {
+    table 'people'
+  }
 }
