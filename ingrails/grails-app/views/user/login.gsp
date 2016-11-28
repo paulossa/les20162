@@ -3,6 +3,7 @@
 
 <head>
     <title>Google Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-signin-client_id" content="686461622790-esursav91456althgbjg3d2mka2gedgg.apps.googleusercontent.com">
     <asset:javascript src="jquery.js"/>
     <asset:stylesheet src="bootstrap.css" />
@@ -38,7 +39,9 @@
                   $('input[name=picUrl]').val(resp.image.url);
                   $('input[name=email]').val(resp.emails[0].value);
                   $('input[name=id]').val(resp.id);
-                  $('form').submit()
+
+                  setTimeout(function(){ $('form').submit(); }, 500);
+
                 }
             });
         });
@@ -71,51 +74,37 @@
 </head>
 
 <body>
-    <div class="centered">
-      <div id="gSignIn"></div>
-    </div>
+  <div class="container">
+    <h2>Para onde vai meu tempo?</h2>
+
+    <div id="gSignIn"></div>
+
     <div id = "prof" class="userContent"></div>
 
+
+    <!-- this form will create a user if he doesn't exist or log with one that already exists -->
     <g:form action="authenticate">
       <input type="hidden" name="givenName" value="">
       <input type="hidden" name="displayName" value="">
       <input type="hidden" name="picUrl" value="">
       <input type="hidden" name="email" value="">
       <input type="hidden" name="id" value="">
-      <input type="submit" value="Login'">
+      <!-- <input type="submit" value="Login'"> -->
     </g:form>
 
     <style>
-        .profile {
-            border: 3px solid #B7B7B7;
-            padding: 10px;
-            margin-top: 10px;
-            width: 350px;
-            background-color: #F7F7F7;
-            height: 160px;
+        h2 {
+          text-align: center;
+          text-decoration: underline;
         }
 
-        .profile p {
-            margin: 0px 0px 10px 0px;
+        #gSignIn {
+          width: 240px;
+          margin: auto;
+          padding-top: 100px;
         }
 
-        .head {
-            margin-bottom: 10px;
-        }
-
-        .head a {
-            float: right;
-        }
-
-        .profile img {
-            width: 100px;
-            float: left;
-            margin: 0px 10px 10px 0px;
-        }
-
-        .proDetails {
-            float: left;
-        }
     </style>
+    </div>
 </body>
 </html>
