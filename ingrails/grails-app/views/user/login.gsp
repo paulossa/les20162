@@ -5,6 +5,11 @@
     <title>Google Login</title>
     <meta name="google-signin-client_id" content="686461622790-esursav91456althgbjg3d2mka2gedgg.apps.googleusercontent.com">
     <asset:javascript src="jquery.js"/>
+    <asset:stylesheet src="bootstrap.css" />
+    <asset:stylesheet src="application.css" />
+    <asset:javascript src="jquery.js" />
+    <asset:javascript src="bootstrap.js" />
+    <asset:javascript src="application.js" />
     <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
     <script>
 
@@ -66,8 +71,9 @@
 </head>
 
 <body>
-    <div id="gSignIn"></div>
-
+    <div class="centered">
+      <div id="gSignIn"></div>
+    </div>
     <div id = "prof" class="userContent"></div>
 
     <g:form action="authenticate">
