@@ -6,39 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="layout" content="main">
     <title>POvMT</title>
-    <asset:stylesheet src="bootstrap.css" />
-    <asset:stylesheet src="application.css" />
-    <asset:javascript src="application.js" />
 </head>
 
 <body>
     <div id="container">
-        <div class="container-fluid">
+        <div class="container-fluid" style="height:100%;">
+
             <h2 class="centered">Minhas Tarefas</h2>
-            <table class="table">
-                <tr>
-                    <th>Titulo</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>Task 1</td>
-                    <td>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#addTimeModal" id="addTI">Add TI</button>
+            <g:each var="activity" in="${activities}">
+              <div class="activity-card">
+                <span class="title">
+                  ${activity.title}
+                </span>
+                <div class="activity-btns">
+                  <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn btn-primary add-ti">Add TI</a>
+                  <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning">Editar</a>
+                  <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn btn-danger">Remover</a>
+                </div>
+              </div>
+            </g:each>
+
+                        <!-- <button class="btn btn-primary"  data-target="#addTimeModal" id="addTI">Add TI</button>
                         <button class="btn btn-danger">Remover</button>
-                        <button class="btn btn-default" onclick="location.href = 'newtask';">Editar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Task 2</td>
-                    <td>
-                        <button class="btn btn-default">Add TI</button>
-                        <button class="btn btn-default">Remover</button>
-                        <button class="btn btn-default">Editar</button>
-                    </td>
-                </tr>
-            </table>
+                        <button class="btn btn-default" onclick="location.href = 'newtask';">Editar</button> -->
+
             <br>
-            <button class="btn btn-success pull-right" onclick="location.href = 'newtask';">Criar Nova Tarefa </button>
+            <a class="btn btn-primary pull-right btn-criar-tarefa" href="${createLink(controller: 'Activity', action: 'create')}">Criar Nova Tarefa </a>
         </div>
 
         <!-- Modal -->
@@ -54,14 +47,15 @@
                         <fieldset>
                           <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Tempo Investido</span>
-                            <input type="number" class="form-control" name="ti" id="ti" aria-describedby="basic-addon1">
+                            <input type="hidden" name="activity-id" value="" id="activity-id-form">
+                            <input type="number" step="0.5" class="form-control" name="ti" id="ti" aria-describedby="basic-addon1" value="0" min="0">
                           </div>
                         </fieldset>
                       </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Submeter</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="activity-form-dismiss">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="activity-id-form-btn">Submeter</button>
                     </div>
                 </div>
             </div>

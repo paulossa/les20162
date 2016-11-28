@@ -2,11 +2,12 @@ package les
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.converters.JSON
 
 @Transactional(readOnly = true)
 class TimeInvestedController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "GET", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -21,6 +22,25 @@ class TimeInvestedController {
         respond new TimeInvested(params)
     }
 
+    def createTi() {
+      def a = Activity.findById(params["activity.id"])
+      if (a && params.double('hours') <= 24){
+          def t = new TimeInvested(hours: params.get('hours'), activity: a)
+
+          t.save(flush: true)
+
+          response.setContentType("application/json")
+          response.status = 200
+          render '{"message": "Sucesso"}'
+          return
+      } else {
+        response.status = 401
+        response.setContentType("application/json")
+        render '{"message": "Parametros de criação inválidos. O tempo não pode ultrapassar 24 horas"}'
+        return
+      }
+    }
+
     @Transactional
     def save(TimeInvested timeInvested) {
         if (timeInvested == null) {
@@ -29,7 +49,10 @@ class TimeInvestedController {
             return
         }
 
+        println "Saving time invested"
+
         if (timeInvested.hasErrors()) {
+            println " jAS errros "
             transactionStatus.setRollbackOnly()
             respond timeInvested.errors, view:'create'
             return

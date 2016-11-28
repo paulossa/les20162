@@ -6,7 +6,9 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class ActivityController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def utilService
+
+    static allowedMethods = [save: "POST", update: "POST", delete: "GET"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -18,16 +20,22 @@ class ActivityController {
     }
 
     def create() {
-        respond new Activity(params)
+        def a = new Activity(params)
+        a.owner = session.user
+        respond a
     }
 
     @Transactional
     def save(Activity activity) {
+      println "Tryign to save $activity ${session.user.id}"
         if (activity == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
+
+
+        activity.owner = User.findById(session.user.id)
 
         if (activity.hasErrors()) {
             transactionStatus.setRollbackOnly()
@@ -40,7 +48,7 @@ class ActivityController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'activity.label', default: 'Activity'), activity.id])
-                redirect activity
+                redirect uri: '/'
             }
             '*' { respond activity, [status: CREATED] }
         }
@@ -69,7 +77,7 @@ class ActivityController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'activity.label', default: 'Activity'), activity.id])
-                redirect activity
+                chain controller: "root", action:"index", model: [usr: session.user, activities: utilService.getActivities(session.user)]
             }
             '*'{ respond activity, [status: OK] }
         }
@@ -84,15 +92,9 @@ class ActivityController {
             return
         }
 
-        activity.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'activity.label', default: 'Activity'), activity.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
+        TimeInvested.executeUpdate("delete from TimeInvested where activity.id=${activity.id}")
+        Activity.executeUpdate("delete from Activity where id=${activity.id}")
+        chain controller: "root", action:"index", model: [usr: session.user, activities: utilService.getActivities(session.user)]
     }
 
     protected void notFound() {
