@@ -26,7 +26,7 @@
 						</g:eachError>
 				</ul>
 				</g:hasErrors>
-				<form class="form-inline" action="${createLink(controller: 'Activity', action: 'save')}" method="POST">
+				<form class="form-inline povmt-form" action="${createLink(controller: 'Activity', action: 'save')}" method="POST">
 					<div class="form-group">
 						<input type="hidden" name="owner.id" value="${session.user.id}">
 						<div class="input-group" style="width: 100%">

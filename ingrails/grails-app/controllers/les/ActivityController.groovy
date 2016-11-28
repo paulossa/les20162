@@ -8,7 +8,7 @@ class ActivityController {
 
     def utilService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "GET"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "GET"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -77,7 +77,7 @@ class ActivityController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'activity.label', default: 'Activity'), activity.id])
-                redirect activity
+                chain controller: "root", action:"index", model: [usr: session.user, activities: utilService.getActivities(session.user)]
             }
             '*'{ respond activity, [status: OK] }
         }
@@ -92,17 +92,8 @@ class ActivityController {
             return
         }
 
-        // activity.delete flush:true
         Activity.executeUpdate("delete from Activity where id=${activity.id}")
         chain controller: "root", action:"index", model: [usr: session.user, activities: utilService.getActivities(session.user)]
-
-        // request.withFormat {
-        //     form multipartForm {
-        //         flash.message = message(code: 'default.deleted.message', args: [message(code: 'activity.label', default: 'Activity'), activity.id])
-        //
-        //     }
-        //     '*'{ render status: NO_CONTENT }
-        // }
     }
 
     protected void notFound() {

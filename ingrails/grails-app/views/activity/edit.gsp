@@ -1,40 +1,79 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'activity.label', default: 'Activity')}" />
-        <title><g:message code="default.edit.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <a href="#edit-activity" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="edit-activity" class="content scaffold-edit" role="main">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:hasErrors bean="${this.activity}">
-            <ul class="errors" role="alert">
-                <g:eachError bean="${this.activity}" var="error">
-                <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-                </g:eachError>
-            </ul>
-            </g:hasErrors>
-            <g:form resource="${this.activity}" method="PUT">
-                <g:hiddenField name="version" value="${this.activity?.version}" />
-                <fieldset class="form">
-                    <f:all bean="activity"/>
-                </fieldset>
-                <fieldset class="buttons">
-                    <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-                </fieldset>
-            </g:form>
-        </div>
-    </body>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="layout" content="main">
+    <title>Cadastrar atividade</title>
+    <asset:stylesheet src="bootstrap.css" />
+    <asset:stylesheet src="application.css" />
+    <asset:javascript src="jquery.js" />
+    <asset:javascript src="bootstrap.js" />
+    <asset:javascript src="application.js" />
+</head>
+
+<div id="wrapper">
+	<body>
+		<div class="container-fluid">
+			<div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
+				<g:hasErrors bean="${this.activity}">
+				<ul class="errors" role="alert">
+						<g:eachError bean="${this.activity}" var="error">
+						<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+						</g:eachError>
+				</ul>
+				</g:hasErrors>
+				<form class="form-inline povmt-form" action="${createLink(controller: 'Activity', action: 'update')}" method="POST">
+					<div class="form-group">
+						<input type="hidden" name="owner.id" value="${session.user.id}">
+            <input type="hidden" name="id" value="${activity.id}">
+						<div class="input-group" style="width: 100%">
+				      <div class="input-group-addon"  style="width: 30%">Titulo</div>
+				      <input type="text" name="title" class="form-control" placeholder="Titulo" value="${activity?.title}" required>
+				    </div>
+						<div class="input-group" style="width: 100%">
+				      <div class="input-group-addon"  style="width: 30%">Descrição</div>
+				      <input type="text" name="description" class="form-control" placeholder="Descrição" value="${activity?.description}">
+				    </div>
+						<div class="input-group" style="width: 100%">
+				      <div class="input-group-addon" style="width: 30%">Categoria</div>
+							<g:select name="category" class="form-control" from="${['Trabalho', 'Lazer']}" value="${activity?.category}"/>
+				      <!-- <select name="" id=""></select> -->
+				    </div>
+						<div class="input-group" style="width: 100%">
+				      <div class="input-group-addon" style="width: 30%">Tags</div>
+				      <input type="text" name="description" class="form-control" placeholder="Tags" value="${activity?.tags}">
+				    </div>
+						<input type="submit" class="btn btn-primary btn-lg" value="Adicionar atividade" style="width: 100%; margin-top: 40px;">
+					</div>
+				</form>
+
+
+
+
+
+				<!-- <div class="input-group">
+
+				  <span class="input-group-addon col-sm-3" id="basic-addon1">Título</span>
+				  <input type="text" class="form-control" aria-describedby="basic-addon1">
+				</div>
+
+				<br>
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon2">Descrição</span>
+				  <input type="text" class="form-control" aria-describedby="basic-addon2">
+				</div>
+
+				<br>
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon3">Data</span>
+				  <input type="text" class="form-control" aria-describedby="basic-addon3">
+				</div> -->
+
+			</div>
+		</div>
+
+	</body>
+</div>
+
 </html>
