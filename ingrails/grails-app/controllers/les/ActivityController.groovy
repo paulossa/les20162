@@ -6,7 +6,9 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class ActivityController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    def utilService
+
+    static allowedMethods = [save: "POST", update: "PUT", delete: "GET"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -90,15 +92,17 @@ class ActivityController {
             return
         }
 
-        activity.delete flush:true
+        // activity.delete flush:true
+        Activity.executeUpdate("delete from Activity where id=${activity.id}")
+        chain controller: "root", action:"index", model: [usr: session.user, activities: utilService.getActivities(session.user)]
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'activity.label', default: 'Activity'), activity.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
+        // request.withFormat {
+        //     form multipartForm {
+        //         flash.message = message(code: 'default.deleted.message', args: [message(code: 'activity.label', default: 'Activity'), activity.id])
+        //
+        //     }
+        //     '*'{ render status: NO_CONTENT }
+        // }
     }
 
     protected void notFound() {

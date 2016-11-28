@@ -23,8 +23,8 @@
                 </span>
                 <div class="activity-btns">
                   <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" class="btn btn-primary">Add TI</a>
-                  <a href="#${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning">Editar</a>
-                  <a href="#" class="btn btn-danger">Remover</a>
+                  <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning">Editar</a>
+                  <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn btn-danger">Remover</a>
                 </div>
               </div>
             </g:each>
