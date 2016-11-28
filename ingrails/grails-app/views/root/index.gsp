@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="layout" content="main">
     <title>POvMT</title>
-    <asset:stylesheet src="bootstrap.css" />
-    <asset:stylesheet src="application.css" />
-    <asset:javascript src="application.js" />
 </head>
 
 <body>

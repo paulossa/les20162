@@ -24,19 +24,22 @@ $(document).ready(function() {
     $("#activity-id-form").val(activityClicked);
   });
 
-  $("#activity-id-form-btn").on('dblclick', function(){
+  $("#activity-id-form-btn").unbind('click');
+
+  $("#activity-id-form-btn").on('click', function(){
     var aid = $("#activity-id-form").val();
     var hours = $("input[name=ti]") .val();
     var jqxhr = $.ajax( "/timeInvested/createTi?activity.id=" + aid + "&hours=" + hours)
       .done(function() {
         $("#activity-id-form").val("");
         $("input[name=ti]") .val("0");
+        location.reload();
       })
-      .fail(function() {
-        alert( "Um erro aconteceu. Tente mais tarde." );
+      .fail(function(data) {
+        alert(data.responseJSON.message);
       })
       .always(function() {
-        $("#activity-form-dismiss").click();
+        // $("#activity-form-dismiss").click();
       });
   });
 });
