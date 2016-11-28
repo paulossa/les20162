@@ -12,10 +12,10 @@
     <asset:javascript src="bootstrap.js" />
     <asset:javascript src="application.js" />
 </head>
+
 <div id="wrapper">
     <body>
         <div class="container-fluid">
-
             <h2 class="centered">Minhas Tarefas</h2>
             <table class="table">
                 <tr>
@@ -42,7 +42,7 @@
             <br>
             <button class="btn btn-default pull-right" onclick="location.href = 'newtask';">Criar Nova Tarefa </button>
         </div>
+    </body>
 </div>
-</body>
 
 </html>
