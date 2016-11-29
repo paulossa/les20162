@@ -25,7 +25,7 @@ class TimeInvestedController {
     def createTi() {
       def a = Activity.findById(params["activity.id"])
       if (a && params.double('hours') <= 24){
-          def t = new TimeInvested(hours: params.get('hours'), activity: a)
+          def t = new TimeInvested(hours: params.double('hours'), activity: a)
 
           t.save(flush: true)
 

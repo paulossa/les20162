@@ -19,7 +19,7 @@ class Activity {
   }
 
   Double getInvestedHours(){
-      def soma = 0
+      def soma = 0.0d
       this.tis.each {
         soma += it.hours
       }
