@@ -22,24 +22,22 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">Ranking das atividades:</div>
+      <table class="table">
+        <tr>
+          <th>Atividade</th>
+          <th>Total de horas</th>
+          <th>Proporção</th>
+        </tr>
+        <g:each in="${activities}">
+          <tr>
+            <td>${it.title}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </g:each>
+      </table>
 
-		<table class="table">
-			<tr>
-				<th>Atividade</th>
-				<th>Total de horas</th> 
-				<th>Proporção</th>
-			</tr>
-  			<tr>
-			    <td>Trabalhar no projeto de LES.</td>
-			    <td>8</td> 
-			    <td>8/12</td>
-  			</tr>
-  			<tr>
-			    <td>Estudar ATAL.</td>
-			    <td>4</td> 
-			    <td>4/12</td>
-  			</tr>
-		</table>
+
 	</div>
 </body>
 

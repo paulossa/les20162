@@ -10,7 +10,6 @@ class UrlMappings {
         }
 
         "/"(controller: "root", view:"/index")
-        "/history"(view:"/history")
         "/newtask"(view:"/newTask")
         "/addTi"(view:"/addTime")
         "500"(view:'/error')

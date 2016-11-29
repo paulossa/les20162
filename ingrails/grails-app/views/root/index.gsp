@@ -12,23 +12,28 @@
     <div id="container">
         <div class="container-fluid" style="height:100%;">
             <h2 class="centered">Minhas Tarefas</h2>
-            <g:each var="activity" in="${activities}">
-                <div class="activity-card">
-                    <a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">
-                        ${activity.title}
-                    </a>
-                    <p class="text-center">
-                      ${activity.description}
-                    </p>
 
-                    <div class="text-right activity-btns">
-                      <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn btn-primary add-ti pull-left">Add TI</a>
-                      <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning">Editar</a>
-                      <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn btn-danger">Remover</a>
-                    </div>
+              <table class="table">
+                <tr>
+                  <th>Atividade</th>
+                  <th>Descrição</th>
+                  <th></th>
+                </tr>
+                <g:each var="activity" in="${activities}">
+                  <tr>
+                    <td><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></td>
+                    <td>${activity.description}</td>
+                    <td>
+                      <div class="text-right activity-btns">
+                        <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn btn-primary add-ti pull-left">Add TI</a>
+                        <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning pull-left">Editar</a>
+                        <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn btn-danger pull-left">Remover</a>
+                      </div>
+                    </td>
+                  </tr>
+                </g:each>
+              </table>
 
-                </div>
-            </g:each>
             <!-- <button class="btn btn-primary"  data-target="#addTimeModal" id="addTI">Add TI</button>
             <button class="btn btn-danger">Remover</button>
             <button class="btn btn-default" onclick="location.href = 'newtask';">Editar</button> -->

@@ -28,8 +28,8 @@
                   <li >
                       <a href="/">Início</a>
                   </li>
-                  <li class="active">
-                      <a href="history">Histórico</a>
+                  <li>
+                      <a href="${createLink(controller:'history', action:'history')}">Histórico</a>
                   </li>
                   <li>
                       <a href="${createLink(controller: 'user', action: 'logout')}">Logout</a>
