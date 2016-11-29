@@ -31,7 +31,7 @@
         <g:each in="${activities}">
           <tr>
             <td>${it.title}</td>
-            <td></td>
+            <td>${it.getInvestedHours()}</td>
             <td></td>
           </tr>
         </g:each>

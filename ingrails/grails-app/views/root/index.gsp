@@ -23,6 +23,7 @@
                   <tr>
                     <td><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></td>
                     <td>${activity.description}</td>
+                    <script>console.log('${activity.description}');</script>
                     <td>
                       <div class="text-right activity-btns">
                         <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn btn-primary add-ti pull-left">Add TI</a>

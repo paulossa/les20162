@@ -18,6 +18,14 @@ class Activity {
     description nullable: true
   }
 
+  Double getInvestedHours(){
+      def soma = 0
+      this.tis.each {
+        soma += it.hours
+      }
+      soma
+  }
+
   String toString() {
     title
   }
