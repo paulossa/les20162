@@ -44,7 +44,7 @@
 				    </div>
 						<div class="input-group" style="width: 100%">
 				      <div class="input-group-addon" style="width: 30%">Tags</div>
-				      <input type="text" name="description" class="form-control" placeholder="Tags">
+				      <input type="text" name="tags" class="form-control" placeholder="Tags">
 				    </div>
 						<input type="submit" class="btn btn-primary btn-lg" value="Adicionar atividade" style="width: 100%; margin-top: 40px;">
 					</div>
