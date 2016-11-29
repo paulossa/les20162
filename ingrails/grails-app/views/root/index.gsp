@@ -14,14 +14,19 @@
             <h2 class="centered">Minhas Tarefas</h2>
             <g:each var="activity" in="${activities}">
                 <div class="activity-card">
-                    <span class="title">
+                    <a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">
                         ${activity.title}
-                    </span>
-                    <div class="activity-btns">
-                        <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn btn-primary add-ti">Add TI</a>
-                        <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning">Editar</a>
-                        <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn btn-danger">Remover</a>
+                    </a>
+                    <p class="text-center">
+                      ${activity.description}
+                    </p>
+
+                    <div class="text-right activity-btns">
+                      <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn btn-primary add-ti pull-left">Add TI</a>
+                      <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning">Editar</a>
+                      <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn btn-danger">Remover</a>
                     </div>
+
                 </div>
             </g:each>
             <!-- <button class="btn btn-primary"  data-target="#addTimeModal" id="addTI">Add TI</button>

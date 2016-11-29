@@ -31,7 +31,7 @@ class UserController {
 
 
 
-      redirect uri: "/"
+      chain controller: "root", action:"index", model: [usr: session.user, activities: utilService.getActivities(session.user)]
       // TO-DO receive the data and if the user is already created set session.user else Create new user and set session.user
 
     }

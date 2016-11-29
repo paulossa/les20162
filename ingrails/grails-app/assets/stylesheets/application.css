@@ -30,17 +30,33 @@ a:hover {
 .activity-card {
   margin-top: 1em;
   border: 1px dashed #ddd;
+  padding-bottom: 20px;
 }
 
 .activity-card .title {
-  font-style: oblique;
-  font-size: 1.2em;
+  display: inline-block;
+  width: 100%;
+  font-size: 1.4em;
   text-align: center;
-  margin-left: 2em;
-  text-decoration: underline;
+  background-color: #eee;
+}
+
+.activity-card p {
+  margin: 10px 0;
+}
+.activity-card li a {
+  width: 80px;
 }
 .activity-card .activity-btns {
-  text-align: center;
+  margin-right: 20px;
+  margin-left: 20px;
+  /*display: inline-block;*/
+  /*text-align: center;
+  list-style-type: none;
+  display: inline-block;
+  float: right;
+  position: relative;
+  top: -200;*/
 }
 
 .btn-criar-tarefa {
