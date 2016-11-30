@@ -40,17 +40,17 @@
                             <th>Categoria:</th>
                             <td>${activity.category}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>Tags:</th>
                             <td>${activity.tags}</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>Dono:</th>
                             <td>${activity.owner}</td>
                         </tr>
                         <tr>
                             <th>Tis:</th>
-                            <td><f:display bean="activity" property="tis"/></td> 
+                            <td><f:display bean="activity" property="tis"/></td>
                         </tr>
                       </table>
                 </div>

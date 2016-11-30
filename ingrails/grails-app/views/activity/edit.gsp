@@ -40,11 +40,11 @@
 							<g:select name="category" class="form-control" from="${['Trabalho', 'Lazer']}" value="${activity?.category}"/>
 				      <!-- <select name="" id=""></select> -->
 				    </div>
-						<div class="input-group" style="width: 100%">
+						<div class="input-group" style="width: 100%; display: none">
 				      <div class="input-group-addon" style="width: 30%">Tags</div>
 				      <input type="text" name="description" class="form-control" placeholder="Tags" value="${activity?.tags}">
 				    </div>
-						<input type="submit" class="btn btn-primary btn-lg" value="Adicionar atividade" style="width: 100%; margin-top: 40px;">
+						<input type="submit" class="btn btn-primary btn-lg" value="Salvar" style="width: 100%; margin-top: 40px;">
 					</div>
 				</form>
 

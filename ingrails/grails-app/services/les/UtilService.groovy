@@ -25,7 +25,7 @@ class UtilService {
     def activities = []
     Activity.findAllByOwner(usr).each { activity ->
       activity.tis.each{
-        if (getWeek(it.dateCreated)==currentWeek){
+        if (getWeek(it.dateCreated)==currentWeek && !(activity in activities) ){
           activities.add(activity)
         }
       }
@@ -37,7 +37,7 @@ class UtilService {
     def activities = []
     Activity.findAllByOwner(usr).each { activity ->
       activity.tis.each{
-        if (getWeek(it.dateCreated)==currentWeek-1){
+        if (getWeek(it.dateCreated)==currentWeek-1 && !(activity in activities)){
           activities.add(activity)
         }
       }
@@ -49,7 +49,7 @@ class UtilService {
     def activities = []
     Activity.findAllByOwner(usr).each { activity ->
       activity.tis.each{
-        if (getWeek(it.dateCreated)==currentWeek-2){
+        if (getWeek(it.dateCreated)==currentWeek-2 && !(activity in activities)){
           activities.add(activity)
         }
       }
