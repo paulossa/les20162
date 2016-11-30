@@ -12,4 +12,8 @@ class TimeInvested {
   static constraints = {
     hours (min: 0.0d, max: 24.0d)
   }
+
+  String toString() {
+    "tempo investido: " + hours
+  }
 }
