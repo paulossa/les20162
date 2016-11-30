@@ -10,7 +10,7 @@
 
 <body>
     <div id="container">
-        <div class="container-fluid" style="height:100%;">
+        <div class="container" style="height: 100%">
             <h2 class="centered">Minhas Tarefas</h2>
             <div class="table-responsive">
 

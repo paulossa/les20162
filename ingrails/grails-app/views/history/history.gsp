@@ -53,42 +53,44 @@
 
 <body>
     <br>
-    <div class="row">
-      <div class="col-xs-8 col-xs-offset-2  col-md-6 col-md-offset-5 centered">
-          <a href="${createLink(controller: 'history', action: 'history')}" class="btn-sm btn-primary pull-left" style="margin-right: 15px;">Semana Atual</a>
-          <a href="${createLink(controller: 'history', action: 'previousWeeksHistory')}" class="btn-sm btn-primary pull-left">Semanas Passadas</a>
-      </div>
-    </div>
-    <br><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2  col-md-6 col-md-offset-5 centered">
+                    <a href="${createLink(controller: 'history', action: 'history')}" class="btn-sm btn-primary pull-left" style="margin-right: 15px;">Semana Atual</a>
+                    <a href="${createLink(controller: 'history', action: 'previousWeeksHistory')}" class="btn-sm btn-primary pull-left">Semanas Passadas</a>
+                </div>
+            </div>
+            <br><br>
 
-    <div class="panel panel-primary">
-        <div class="panel-heading">Total de horas investidas:</div>
-        <div class="panel-body">Esta semana: ${currentWeekHours}</div>
-    </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Total de horas investidas:</div>
+                <div class="panel-body">Esta semana: ${currentWeekHours}</div>
+            </div>
 
-        <h1 class="text-center">Ranking das atividades:</h1>
-        <table class="table">
-            <tr>
-                <th>Atividade</th>
-                <th>Total de horas</th>
-                <th>Proporção</th>
-            </tr>
-            <g:each in="${activities}">
+            <h1 class="text-center">Ranking das atividades:</h1>
+            <table class="table">
                 <tr>
-                    <td>${it.title}</td>
-                    <td>${it.getInvestedHours()}</td>
-                    <g:if test="${currentWeekHours > 0}">
-                        <td>${(it.getInvestedHours()/currentWeekHours).round(3)*100}%</td>
-                    </g:if>
-                    <g:else>
-                        <td>0</td>
-                    </g:else>
+                    <th>Atividade</th>
+                    <th>Total de horas</th>
+                    <th>Proporção</th>
                 </tr>
-            </g:each>
-        </table>
+                <g:each in="${activities}">
+                    <tr>
+                        <td>${it.title}</td>
+                        <td>${it.getInvestedHours()}</td>
+                        <g:if test="${currentWeekHours > 0}">
+                            <td>${(it.getInvestedHours()/currentWeekHours).round(3)*100}%</td>
+                        </g:if>
+                        <g:else>
+                            <td>0</td>
+                        </g:else>
+                    </tr>
+                </g:each>
+            </table>
 
-    <div class="panel panel-default">
-        <div id="container" style="max-width: 800px; min-width: 310px; height: 400px; margin: 0 auto"></div>
+            <div class="panel panel-default">
+                <div id="container" style="max-width: 800px; min-width: 310px; height: 400px; margin: 0 auto"></div>
+            </div>
     </div>
 </body>
 

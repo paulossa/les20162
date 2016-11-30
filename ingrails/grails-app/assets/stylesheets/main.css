@@ -9,23 +9,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* BASE LAYOUT */
-
+/*
 html {
-    background-color: #ddd;
+    background-color: #ffffff;
     background-image: -moz-linear-gradient(center top, #aaa, #ddd);
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #aaa), color-stop(1, #ddd));
     background-image: linear-gradient(top, #aaa, #ddd);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr = '#aaaaaa', EndColorStr = '#dddddd');
     background-repeat: no-repeat;
     height: 100%;
-    /* change the box model to exclude the padding from the calculation of 100% height (IE8+) */
+    /* change the box model to exclude the padding from the calculation of 100% height (IE8+)
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 html.no-cssgradients {
-    background-color: #aaa;
+    background-color: #ffffff;
 }
 
 html * {
@@ -35,7 +35,7 @@ html * {
 body {
     background: #ffffff;
     color: #333333;
-    overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
+    overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide 
     -moz-box-shadow: 0 0 0.3em #4D8618;
     -webkit-box-shadow: 0 0 0.3em #4D8618;
     box-shadow: 0 0 0.3em #4D8618;
@@ -44,7 +44,7 @@ body {
 #grailsLogo {
     background-color: #abbf78;
 }
-
+*/
 a:hover, a:active {
     outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
 }
@@ -84,13 +84,13 @@ img {
 }
 
 .footer {
-    background: #48802c;
-    color: #000;
-    clear: both;
-    font-size: 0.8em;
-    margin-top: 1.5em;
-    padding: 1em;
-    min-height: 1em;
+    position:fixed;
+    height:50px;
+    background: #ffffff;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    margin-bottom:0px;
 }
 
 .footer a {

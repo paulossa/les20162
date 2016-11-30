@@ -39,13 +39,13 @@
       </div>
   </nav>
 
-    <g:layoutBody/>
+  <g:layoutBody/>
 
-    <!-- <div class="footer" role="contentinfo"></div> -->
+    <!-- <div class="footer" role="contentinfo" style="margin-top: 20%"></div> -->
 
-    <div id="spinner" class="spinner" style="display:none;">
+    <!-- <div id="spinner" class="spinner" style="display:block;">
         <g:message code="spinner.alt" default="Loading&hellip;"/>
-    </div>
+    </div> -->
 
     <asset:javascript src="application.js"/>
 

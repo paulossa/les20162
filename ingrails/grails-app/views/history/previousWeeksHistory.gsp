@@ -63,6 +63,7 @@
 
 <body>
     <br>
+    <div class="container">
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2  col-md-6 col-md-offset-5 centered">
             <a href="${createLink(controller: 'history', action: 'history')}" class="btn-sm btn-primary pull-left" style="margin-right: 15px;">Semana Atual</a>
@@ -148,6 +149,7 @@
     <div class="panel panel-default">
         <div id="container" style="max-width: 800px; min-width: 310px; height: 400px; margin: 0 auto"></div>
     </div>
+  </div>
 </body>
 
 </html>
