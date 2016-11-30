@@ -16,36 +16,16 @@ class UtilService {
       get( Calendar.DAY_OF_WEEK )
     }
 
-    def daysOfThisWeek = (currentDate-currentDay+1)..(currentDate +7 - currentDay)
-    def daysOfFirstWeek = (currentDate - 7 - currentDay)..(currentDate - 6 + currentDay)
-    def daysOfSecondWeek = (currentDate - 13 - currentDay)..(currentDate - 13 + currentDay)
-
-    def BEGIN_CURRENT_WEEK = currentDate-currentDay+1
-    def END_CURRENT_WEEK =  currentDate +7 - currentDay
-
-    def BEGIN_WEEK_1 = currentDate - 7 - currentDay
-    def END_WEEK_1 =  currentDate - 6 + currentDay
-
-    def BEGIN_WEEK_2 = currentDate - 7 - currentDay
-    def END_WEEK_2 =  currentDate - 6 + currentDay
-
-    def BEGIN_OF_LAST_WEEKS = currentDate - 13 - currentDay
-/*
-    def getDays(){
-      daysOfThisWeek.each{
-        println it
-      }
-      println "--------"
-      daysOfThreeWeeks.each{
-        println it
-      }
+    int currentWeek = Calendar.instance.with {
+      time = currentDate
+      get( Calendar.WEEK_OF_MONTH )
     }
-*/
+
   def getCurrentWeekActivities(User usr){
     def activities = []
     Activity.findAllByOwner(usr).each { activity ->
       activity.tis.each{
-        if (BEGIN_CURRENT_WEEK < it.dateCreated && it.dateCreated < END_CURRENT_WEEK){
+        if (getWeek(it.dateCreated)==currentWeek){
           activities.add(activity)
         }
       }
@@ -57,7 +37,7 @@ class UtilService {
     def activities = []
     Activity.findAllByOwner(usr).each { activity ->
       activity.tis.each{
-        if (BEGIN_WEEK_1 < it.dateCreated && it.dateCreated < END_WEEK_1){
+        if (getWeek(it.dateCreated)==currentWeek-1){
           activities.add(activity)
         }
       }
@@ -69,7 +49,7 @@ class UtilService {
     def activities = []
     Activity.findAllByOwner(usr).each { activity ->
       activity.tis.each{
-        if (BEGIN_WEEK_2 < it.dateCreated && it.dateCreated < END_WEEK_2){
+        if (getWeek(it.dateCreated)==currentWeek-2){
           activities.add(activity)
         }
       }
@@ -105,6 +85,50 @@ class UtilService {
         }
       }
       total
+  }
+
+  def generateCurrentWeekData(User usr){
+    def currentWeekHours = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+    getCurrentWeekActivities(usr).each{
+      it.tis.each{
+        currentWeekHours[getDayOfWeek(it.dateCreated)] += it.hours
+      }
+    }
+    currentWeekHours
+  }
+
+  def generateWeek1Data(User usr){
+    def week1Hours = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+    getWeek1Activities(usr).each{
+      it.tis.each{
+        week1Hours[getDayOfWeek(it.dateCreated)] += it.hours
+      }
+    }
+    week1Hours
+  }
+
+  def generateWeek2Data(User usr){
+    def week2Hours = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+    getWeek2Activities(usr).each{
+      it.tis.each{
+        week2Hours[getDayOfWeek(it.dateCreated)] += it.hours
+      }
+    }
+    week2Hours
+  }
+
+  def getDayOfWeek(date){
+    int day = Calendar.instance.with {
+      time = date
+      get( Calendar.DAY_OF_WEEK )
+    }
+  }
+
+  def getWeek(date){
+    int week = Calendar.instance.with {
+      time = date
+      get( Calendar.WEEK_OF_MONTH )
+    }
   }
 
 }
