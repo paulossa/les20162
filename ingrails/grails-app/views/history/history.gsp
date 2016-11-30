@@ -42,7 +42,9 @@
                 },
                 series: [{
                     name: 'Esta semana',
-                    data: ${currentWeekData}
+                    data: ${
+                        currentWeekData
+                    }
                 }]
             });
         });
@@ -51,16 +53,20 @@
 
 <body>
     <br>
-    <a href="${createLink(controller: 'history', action: 'history')}" class="btn-sm btn-primary pull-left">Semana Atual</a>
-    <a href="${createLink(controller: 'history', action: 'previousWeeksHistory')}" class="btn-sm btn-primary pull-left">Semanas Passadas</a>
-    <br>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2  col-md-6 col-md-offset-5 centered">
+          <a href="${createLink(controller: 'history', action: 'history')}" class="btn-sm btn-primary pull-left" style="margin-right: 15px;">Semana Atual</a>
+          <a href="${createLink(controller: 'history', action: 'previousWeeksHistory')}" class="btn-sm btn-primary pull-left">Semanas Passadas</a>
+      </div>
+    </div>
+    <br><br>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">Total de horas investidas nesta semana: ${currentWeekHours}</div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Total de horas investidas:</div>
+        <div class="panel-body">Esta semana: ${currentWeekHours}</div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">Ranking das atividades:</div>
+        <h1 class="text-center">Ranking das atividades:</h1>
         <table class="table">
             <tr>
                 <th>Atividade</th>
@@ -80,10 +86,9 @@
                 </tr>
             </g:each>
         </table>
-    </div>
 
     <div class="panel panel-default">
-      <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <div id="container" style="max-width: 800px; min-width: 310px; height: 400px; margin: 0 auto"></div>
     </div>
 </body>
 

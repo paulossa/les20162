@@ -42,14 +42,19 @@
                 },
                 series: [{
                     name: 'Esta semana',
-                    data: ${currentWeekData}
-                },{
-                  name: 'Semana passada',
-                  data: ${week1Data}
-                },
-                {
-                  name: 'Semana retrasada',
-                  data: ${week2Data}
+                    data: ${
+                        currentWeekData
+                    }
+                }, {
+                    name: 'Semana passada',
+                    data: ${
+                        week1Data
+                    }
+                }, {
+                    name: 'Semana retrasada',
+                    data: ${
+                        week2Data
+                    }
                 }]
             });
         });
@@ -58,85 +63,90 @@
 
 <body>
     <br>
-    <a href="${createLink(controller: 'history', action: 'history')}" class="btn-sm btn-primary pull-left">Semana Atual</a>
-    <a href="${createLink(controller: 'history', action: 'previousWeeksHistory')}" class="btn-sm btn-primary pull-left">Semanas Passadas</a>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2  col-md-6 col-md-offset-5 centered">
+            <a href="${createLink(controller: 'history', action: 'history')}" class="btn-sm btn-primary pull-left" style="margin-right: 15px;">Semana Atual</a>
+            <a href="${createLink(controller: 'history', action: 'previousWeeksHistory')}" class="btn-sm btn-primary pull-left">Semanas Passadas</a>
+        </div>
+    </div>
     <br><br>
+    <div class="panel panel-primary">
+      <div class="panel-heading">Total de horas investidas: ${currentWeekHours}</div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">Total de horas investidas nesta semana: ${currentWeekHours}</div>
-        <div class="panel-heading">Total de horas investidas semana passada: ${week1Hours}</div>
-        <div class="panel-heading">Total de horas investidas semana retrasada: ${week2Hours}</div>
+      <div class="panel-body">Esta semana: ${currentWeekHours}</div>
+        <div class="panel-body">Semana passada: ${week1Hours}</div>
+        <div class="panel-body">Semana retrasada: ${week2Hours}</div>
     </div>
+    <h1 class="text-center">Ranking das atividades:</h1><br>
+
+    <h1 class="text-center">Semana atual</h1>
+    <table class="table">
+        <tr>
+            <th>Atividade</th>
+            <th>Total de horas</th>
+            <th>Proporção</th>
+        </tr>
+        <g:each in="${currentActivities}">
+            <tr>
+                <td>${it.title}</td>
+                <td>${it.getInvestedHours()}</td>
+                <g:if test="${currentWeekHours > 0}">
+                    <td>${(it.getInvestedHours()/currentWeekHours).round(3)*100}%</td>
+                </g:if>
+                <g:else>
+                    <td>0</td>
+                </g:else>
+            </tr>
+        </g:each>
+    </table>
+    <br>
+
+    <h1 class="text-center">Semana Passada</h1>
+    <table class="table">
+        <tr>
+            <th>Atividade</th>
+            <th>Total de horas</th>
+            <th>Proporção</th>
+        </tr>
+        <g:each in="${activitiesWeek1}">
+            <tr>
+                <td>${it.title}</td>
+                <td>${it.getInvestedHours()}</td>
+                <g:if test="${week1Hours > 0}">
+                    <td>${(it.getInvestedHours()/week1Hours).round(3)*100}%</td>
+                </g:if>
+                <g:else>
+                    <td>0</td>
+                </g:else>
+            </tr>
+        </g:each>
+    </table>
+
+    <br>
+
+    <h1 class="text-center">Semana Retrasada</h1>
+    <table class="table">
+        <tr>
+            <th>Atividade</th>
+            <th>Total de horas</th>
+            <th>Proporção</th>
+        </tr>
+        <g:each in="${activitiesWeek2}">
+            <tr>
+                <td>${it.title}</td>
+                <td>${it.getInvestedHours()}</td>
+                <g:if test="${week2Hours > 0}">
+                    <td>${(it.getInvestedHours()/week2Hours).round(3)*100}%</td>
+                </g:if>
+                <g:else>
+                    <td>0</td>
+                </g:else>
+            </tr>
+        </g:each>
+    </table>
 
     <div class="panel panel-default">
-        <div class="panel-heading">Ranking das atividades:</div>
-        <table class="table">
-            <tr>
-                <th>Atividade</th>
-                <th>Total de horas</th>
-                <th>Proporção</th>
-            </tr>
-            <g:each in="${currentActivities}">
-                <tr>
-                    <td>${it.title}</td>
-                    <td>${it.getInvestedHours()}</td>
-                    <g:if test="${currentWeekHours > 0}">
-                        <td>${(it.getInvestedHours()/currentWeekHours).round(3)*100}%</td>
-                    </g:if>
-                    <g:else>
-                        <td>0</td>
-                    </g:else>
-                </tr>
-            </g:each>
-        </table>
-        <br>
-        <h1>Semana Passada</h1>
-        <br>
-        <table class="table">
-            <tr>
-                <th>Atividade</th>
-                <th>Total de horas</th>
-                <th>Proporção</th>
-            </tr>
-            <g:each in="${activitiesWeek1}">
-                <tr>
-                    <td>${it.title}</td>
-                    <td>${it.getInvestedHours()}</td>
-                    <g:if test="${week1Hours > 0}">
-                        <td>${(it.getInvestedHours()/week1Hours).round(3)*100}%</td>
-                    </g:if>
-                    <g:else>
-                        <td>0</td>
-                    </g:else>
-                </tr>
-            </g:each>
-        </table>
-        <br>
-        <h1>Semana Retrasada</h1>
-        <br>
-        <table class="table">
-            <tr>
-                <th>Atividade</th>
-                <th>Total de horas</th>
-                <th>Proporção</th>
-            </tr>
-            <g:each in="${activitiesWeek2}">
-                <tr>
-                    <td>${it.title}</td>
-                    <td>${it.getInvestedHours()}</td>
-                    <g:if test="${week2Hours > 0}">
-                        <td>${(it.getInvestedHours()/week2Hours).round(3)*100}%</td>
-                    </g:if>
-                    <g:else>
-                        <td>0</td>
-                    </g:else>
-                </tr>
-            </g:each>
-        </table>
-    </div>
-
-    <div class="panel panel-default">
-      <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <div id="container" style="max-width: 800px; min-width: 310px; height: 400px; margin: 0 auto"></div>
     </div>
 </body>
 

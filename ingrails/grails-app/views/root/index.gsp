@@ -12,32 +12,33 @@
     <div id="container">
         <div class="container-fluid" style="height:100%;">
             <h2 class="centered">Minhas Tarefas</h2>
+            <div class="table-responsive">
 
-              <table class="table">
-                <tr>
-                  <th>Atividade</th>
-                  <th>Descrição</th>
-                  <th></th>
-                </tr>
-                <g:each var="activity" in="${activities}">
-                  <tr>
-                      <td><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></td>
-                      <td>${activity.description}</td>
-                    <script>console.log('${activity.description}');</script>
-                    <td>
-                      <div class="text-right activity-btns">
-                        <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn-sm btn-primary add-ti pull-left">Add TI</a>
-                        <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn-sm btn-warning pull-left">Editar</a>
-                        <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn-sm btn-danger pull-left">Remover</a>
-                      </div>
-                    </td>
-                  </tr>
-                </g:each>
-              </table>
-
-            <!-- <button class="btn btn-primary"  data-target="#addTimeModal" id="addTI">Add TI</button>
-            <button class="btn btn-danger">Remover</button>
-            <button class="btn btn-default" onclick="location.href = 'newtask';">Editar</button> -->
+                <table class="table">
+                    <tr>
+                        <th>Atividade</th>
+                        <th>Descrição</th>
+                        <th></th>
+                    </tr>
+                    <g:each var="activity" in="${activities}">
+                        <tr>
+                            <td><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></td>
+                            <td>${activity.description}</td>
+                            <script>
+                                console.log('${activity.description}');
+                            </script>
+                            <td>
+                                <div class="text-right activity-btns">
+                                    <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn-sm btn-primary add-ti pull-left" title="Add TI">
+                                      <span class="glyphicon glyphicon-time" aria-hidden="true"></a>
+                                    <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn-sm btn-warning pull-left"><span class="glyphicon glyphicon-pencil" aria-hidden="true"  title="Editar Atividade"></span></a>
+                                    <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn-sm btn-danger pull-left"><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Remover Atividade"></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </g:each>
+                </table>
+            </div>
             <br>
             <a class="btn btn-primary pull-right btn-criar-tarefa" href="${createLink(controller: 'Activity', action: 'create')}">Criar Nova Tarefa </a>
         </div>
@@ -51,15 +52,15 @@
                         <h4 class="modal-title" id="myModalLabel">Tempo investido</h4>
                     </div>
                     <div class="modal-body">
-                      <form>
-                        <fieldset>
-                          <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Tempo Investido</span>
-                            <input type="hidden" name="activity-id" value="" id="activity-id-form">
-                            <input type="number" step="0.5" class="form-control" name="ti" id="ti" aria-describedby="basic-addon1" value="0" min="0">
-                          </div>
-                        </fieldset>
-                      </form>
+                        <form>
+                            <fieldset>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Tempo Investido</span>
+                                    <input type="hidden" name="activity-id" value="" id="activity-id-form">
+                                    <input type="number" step="0.5" class="form-control" name="ti" id="ti" aria-describedby="basic-addon1" value="0" min="0">
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" id="activity-form-dismiss">Cancelar</button>
