@@ -13,6 +13,7 @@
 *= require mobile
 *= require_self
 */
+
 body { padding-top: 50px;}
 
 html, body {
@@ -23,10 +24,8 @@ html, body {
 
 a:hover {
     text-decoration: none;
-    /*cursor: pointer;*/
 }
 
-/*Custom CSS */
 .activity-card {
   margin-top: 1em;
   border: 1px dashed #ddd;
@@ -50,13 +49,6 @@ a:hover {
 .activity-card .activity-btns {
   margin-right: 20px;
   margin-left: 20px;
-  /*display: inline-block;*/
-  /*text-align: center;
-  list-style-type: none;
-  display: inline-block;
-  float: right;
-  position: relative;
-  top: -200;*/
 }
 
 .btn-criar-tarefa {

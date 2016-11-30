@@ -21,14 +21,14 @@
                 </tr>
                 <g:each var="activity" in="${activities}">
                   <tr>
-                    <td><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></td>
-                    <td>${activity.description}</td>
+                      <td><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></td>
+                      <td>${activity.description}</td>
                     <script>console.log('${activity.description}');</script>
                     <td>
                       <div class="text-right activity-btns">
-                        <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn btn-primary add-ti pull-left">Add TI</a>
-                        <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn btn-warning pull-left">Editar</a>
-                        <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn btn-danger pull-left">Remover</a>
+                        <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn-sm btn-primary add-ti pull-left">Add TI</a>
+                        <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn-sm btn-warning pull-left">Editar</a>
+                        <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn-sm btn-danger pull-left">Remover</a>
                       </div>
                     </td>
                   </tr>

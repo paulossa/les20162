@@ -5,7 +5,7 @@ class TimeInvested {
   Double hours
 
   Date dateCreated
-  Date lastUpdated 
+  Date lastUpdated
 
   static belongsTo = [activity: Activity]
 
