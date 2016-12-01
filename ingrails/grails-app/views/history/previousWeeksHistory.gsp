@@ -13,6 +13,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script>
         $(function() {
+            console.log("current: ${currentActivities} --- week1: ${activitiesWeek1} --- week2:  ${activitiesWeek2}");
             Highcharts.chart('container', {
                 title: {
                     text: 'Atividade Semanal',
