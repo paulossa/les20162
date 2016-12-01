@@ -1,0 +1,73 @@
+
+Quanto mais ao topo da lista ~DE TASKS~ maior a prioridade da tarefa. 
+
+(Peso: 8)
+Como usuário, cadastro uma prioridade para cada uma de minhas atividades, e essas prioridades são mostradas em todos os relatórios de uso do meu tempo, para que assim eu saiba se estou investindo mais tempo nas atividades mais importantes.
+  Tasks:
+
+    Definir o tipo de prioridade da tarefa
+      sugestão: inList : ['Prioridade baixa', 'Prioridade média', 'Prioridade Alta']
+
+    Definir/construir/editar a (MOCK/GSP) VIEW de criação e edição de activities
+
+    Definir/construir/editar a (MOCK/GSP) VIEW que mostrará os relatórios usando um canal para as prioridades das tarefas
+
+    Definir/construir/editar o Controlador que fornecerá os dados necessários para a view.
+
+    Definir/construir/editar o Javascript para possível montagem do relatório no cliente.
+
+(Peso: 5)
+Como usuário, sou lembrado pelo sistema se eu não cadastrei nenhum Ti no dia anterior, para que assim eu esqueça menos de cadastrá-los.
+Nesta ocasião, quando cadastro um ou mais Tis, ele é registrado no dia anterior. Ao ser lembrado, posso desativar lembretes ou mudar seu horário.
+
+  Tasks:
+    (Aviso por email?)
+
+    Definir Tecnologias para serem usadas no servidor.
+
+    Definir lógica dos jobs a serem rodados no servidor.
+
+(Peso: 5)
+Como usuário, ao criar um Ti posso adicionar uma foto para ilustrar a atividade, para que essa foto seja mostrada junto à atividade na interface de agora por diante, e eu ache a interface mais fácil e divertida.
+A foto poderá ser tirada ou pega da galeria. Uma miniatura da foto será mostrada junto ao nome da atividade sempre que ela aparecer na interface.
+
+  Tasks:
+    Remover as tabela da vida. PLMDDS
+
+    Definir/construir/editar a (MOCK/GSP) VIEW de criação e edição de activities
+
+    Definir/construir/editar a (MOCK/GSP) VIEW que mostrará os detalhes de activities
+
+
+(Peso: ?)
+Como usuário, marco cada atividade que tenho na minha lista de atividades que o sistema conhece como sendo trabalho ou lazer.
+Caso tenha categorizado as atividades, o sistema me mostra nos relatórios de semana atual e histórico quanto do meu tempo estou usando em cada uma dessas categorias, para que assim eu possa decidir se estou balanceando essas duas partes de minha vida adequadamente.
+  Tasks:
+    Pensar na filtragem dos relatórios (Possível faze-lo usando highcharts)
+    Re-pensar os relatórios
+
+(Peso: 13)
+Como usuário, na minha página da SEMANA ATUAL, escolho um subconjunto das atividades que o sistema conhece e ele me mostra um relatório usando apenas Tis dessas atividades,
+para que eu possa comparar o tempo usado em atividades específicas (por exemplo, nas disciplinas que curso).
+A interface deixa claro quando estou vendo um relatório com todas as atividades ou apenas algumas. Há uma forma fácil de voltar para todas.
+  Tasks:
+    Repensar views again.
+    Liberar um wireframe talvez? [https://webdesign.tutsplus.com/articles/a-beginners-guide-to-wireframing--webdesign-7399]
+    Criar controlador que filtra as atividades selecionadas.
+    Criar reset de relatório na interface.
+
+(Peso: 13)
+Como usuário, na minha página de HISTÓRICO, escolho um subconjunto das atividades que o sistema conhece e ele me mostra um relatório usando apenas Tis dessas atividades,
+para que eu possa comparar o tempo usado em atividades específicas (por exemplo, nas disciplinas que curso) ao longo do tempo.
+  Tasks:
+    Criar controlador que filtra as atividades selecionadas.
+    Criar reset de relatório na interface.
+
+
+(Peso: 8) // A seleção das duas US anteriores será feita através de um campo tags separados por virgulas?
+Como usuário, cadastro tags nas minhas atividades, e uso essas tags para selecionar subconjuntos das atividades para as quais quero ver relatórios da semana atual ou histórico,
+para que assim seja mais fácil selecionar subconjuntos de tarefas para esses relatórios.
+  Tasks:
+    Repensar views again.
+    Pensar em parametros de filtragem que serão enviados para o servidor.
+    Plotar os gráficos filtrados na página de Histórico OU Semana atual.
