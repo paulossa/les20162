@@ -29,7 +29,7 @@
               <div class="input-group">
                 <span class="input-group-addon">
                   <label for="notifications-allowed">Permitir</label>
-                  <input type="checkbox" aria-label="Allow notifications" name="notifications-allowed">
+                  <input type="checkbox" aria-label="Allow notifications" name="notifications-allowed" ${currentConf.notificationsEnabled ? 'checked': ''}>
                 </span>
                 <input type="text" class="form-control" aria-label="..." placeholder="Email" value="${session.user.email}" name="email">
               </div>
@@ -57,6 +57,10 @@
       $(document).ready(function(){
         var notificationscb = $("input[name=notifications-allowed]");
 
+        if (!notificationscb.prop('checked')){
+          $('input[name=email]').prop('disabled', true);
+          $('input[name=hourOfDay]').prop('disabled', true);
+        }
 
         notificationscb.on('click', function() {
           var wantsEmails = $(this).prop('checked');

@@ -31,7 +31,7 @@ class UserController {
 
     def notifications() {
       // Reminder.findByUser(session.user)
-      render view: 'notifications', model: [currentConf: [time: '04:20']]
+      render view: 'notifications', model: [currentConf: [time: '04:20', notificationsEnabled: false]]
     }
 
     def logout() {
