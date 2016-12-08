@@ -6,6 +6,7 @@ class Activity {
   String description
   String category
   String tags
+  String priority
 
   User owner
 
@@ -16,6 +17,7 @@ class Activity {
     category nullable: true, inList : ["Trabalho", "Lazer"]
     tags nullable: true
     description nullable: true
+    priority nullable: true, inList :["Alta", "Media", "Baixa"]
   }
 
   Double getInvestedHours(){

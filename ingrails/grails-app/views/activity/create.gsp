@@ -42,6 +42,10 @@
 							<g:select name="category" class="form-control" from="${['Trabalho', 'Lazer']}"/>
 				      <!-- <select name="" id=""></select> -->
 				    </div>
+						<div class="input-group" style="width: 100%">
+							<div class="input-group-addon" style="width: 30%">Prioridade</div>
+							<g:select name="priority" class="form-control" from="${['Alta', 'Media', 'Baixa']}"/>
+						</div>
 						<div class="input-group" style="width: 100%; display: none">
 				      <div class="input-group-addon" style="width: 30%">Tags</div>
 				      <input type="text" name="tags" class="form-control" placeholder="Tags">
