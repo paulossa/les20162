@@ -44,6 +44,10 @@
                             <th>Prioridade:</th>
                             <td>${activity.priority}</td>
                         </tr>
+                        <!-- <tr>
+                          <th>Tags:</th>
+                          <td>${activity.tags}</td>
+                        </tr> -->
                         <tr>
                             <th>Dono:</th>
                             <td>${activity.owner}</td>

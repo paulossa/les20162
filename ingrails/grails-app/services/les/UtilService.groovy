@@ -11,14 +11,9 @@ class UtilService {
 
     def currentDate = new Date().clearTime()
 
-    int currentDay = Calendar.instance.with {
-      time = currentDate
-      get( Calendar.DAY_OF_WEEK )
-    }
-
     int currentWeek = Calendar.instance.with {
       time = currentDate
-      get( Calendar.WEEK_OF_MONTH )
+      get( Calendar.WEEK_OF_YEAR )
     }
 
   def getCurrentWeekActivities(User usr){
@@ -55,6 +50,20 @@ class UtilService {
       }
     }
     activities
+  }
+
+  def getTotalByCategory(User usr, String  category, int week){
+    def total = 0.0d
+    getCurrentWeekActivities(usr).each{ activity ->
+      if(activity.category == category){
+        activity.tis.each{
+          if(getWeek(it.dateCreated)==week){
+            total = it.hours
+          }
+        }
+      }
+    }
+    total
   }
 
   def getThisWeekHours(User usr){
@@ -127,7 +136,7 @@ class UtilService {
   def getWeek(date){
     int week = Calendar.instance.with {
       time = date
-      get( Calendar.WEEK_OF_MONTH )
+      get( Calendar.WEEK_OF_YEAR )
     }
   }
 
