@@ -64,7 +64,11 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">Total de horas investidas:</div>
-                <div class="panel-body">Esta semana: ${currentWeekHours}</div>
+                <div class="panel-body">
+                  <span>Esta semana: ${currentWeekHours}</span> <br>
+                  <span>TI em atividades de trabalho: ${hoursByTrabalho}<span> <br>
+                  <span>TI em atividades de lazer: ${hoursByLazer}<span>
+                </div>
             </div>
 
             <h1 class="text-center">Ranking das atividades:</h1>
@@ -72,12 +76,14 @@
                 <tr>
                     <th>Atividade</th>
                     <th>Total de horas</th>
+                    <th>Prioridade</th>
                     <th>Proporção</th>
                 </tr>
                 <g:each in="${activities}">
                     <tr>
                         <td>${it.title}</td>
                         <td>${it.getInvestedHours()}</td>
+                        <td>${it.priority}</td>
                         <g:if test="${currentWeekHours > 0}">
                             <td>${(it.getInvestedHours()/currentWeekHours).round(3)*100}%</td>
                         </g:if>
