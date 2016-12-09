@@ -16,11 +16,13 @@ class HistoryController {
        currentWeekData: utilService.generateCurrentWeekData(session.user),
        hoursByTrabalho: utilService.getTotalByCategory(session.user, "Trabalho", currentWeek),
        hoursByLazer: utilService.getTotalByCategory(session.user, "Lazer", currentWeek),
+       tags: utilService.getAllTags(session.user)
       ]
     }
 
     def previousWeeksHistory(){
       render view: 'previousWeeksHistory', model: [usr: session.user,
+      tags: utilService.getAllTags(session.user),
       currentActivities: utilService.getCurrentWeekActivities(session.user),
       currentWeekHours: utilService.getThisWeekHours(session.user),
       hoursByTrabalho: utilService.getTotalByCategory(session.user, "Trabalho", currentWeek),

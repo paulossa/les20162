@@ -9,6 +9,18 @@ class UtilService {
       Activity.findAllByOwner(usr)
     }
 
+    def getAllTags(User usr){
+      def tags = []
+      getActivities(usr).each{activity ->
+        if(activity.tags != null){
+          activity.tags.split(",").each{
+            tags.add(it);
+          }
+        }
+      }
+      tags
+    }
+
     def currentDate = new Date().clearTime()
 
     int currentWeek = Calendar.instance.with {

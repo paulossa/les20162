@@ -76,6 +76,7 @@
     <h1 class="text-center">Relatório de Atividades:</h1><br>
 
     <h1 class="text-center">Semana atual</h1>
+
     <div class="panel panel-primary">
         <div class="panel-heading">Total de horas investidas:</div>
         <div class="panel-body">
@@ -84,8 +85,15 @@
           <span>TI em atividades de lazer: ${hoursByLazer}<span>
         </div>
     </div>
-    <table class="table">
+    <select id="filtro" onchange= "filterTable('currentWeekTable')">
+      <option value="all">Todas as atividades</option>
+      <g:each in="${tags}">
+        <option value="${it}">${it}</option>
+      </g:each>
+    </select>
+    <table class="table" id="currentWeekTable">
         <tr>
+            <th style="display:none;"></th>
             <th>Atividade</th>
             <th>Total de horas</th>
             <th>Prioridade</th>
@@ -93,6 +101,7 @@
         </tr>
         <g:each in="${currentActivities}">
             <tr>
+                <td style="display:none;">${it.tags}</td>
                 <td>${it.title}</td>
                 <td>${it.getInvestedHours()}</td>
                 <td>${it.priority}</td>
@@ -108,6 +117,7 @@
     <br>
 
     <h1 class="text-center">Semana Passada</h1>
+
     <div class="panel panel-primary">
         <div class="panel-heading">Total de horas investidas:</div>
         <div class="panel-body">
@@ -116,8 +126,16 @@
           <span>TI em atividades de lazer: ${hoursByLazer1}<span>
         </div>
     </div>
-    <table class="table">
+
+    <select id="filtro" onchange= "filterTable('week1Table')">
+      <option value="all">Todas as atividades</option>
+      <g:each in="${tags}">
+        <option value="${it}">${it}</option>
+      </g:each>
+    </select>
+    <table class="table" id="week1Table">
         <tr>
+            <th style="display:none;"></th>
             <th>Atividade</th>
             <th>Total de horas</th>
             <th>Prioridade</th>
@@ -125,6 +143,7 @@
         </tr>
         <g:each in="${activitiesWeek1}">
             <tr>
+                <td style="display:none;">${it.tags}</td>
                 <td>${it.title}</td>
                 <td>${it.getInvestedHours()}</td>
                 <td>${it.priority}</td>
@@ -141,6 +160,7 @@
     <br>
 
     <h1 class="text-center">Semana Retrasada</h1>
+
     <div class="panel panel-primary">
         <div class="panel-heading">Total de horas investidas:</div>
         <div class="panel-body">
@@ -149,8 +169,15 @@
           <span>TI em atividades de lazer: ${hoursByLazer2}<span>
         </div>
     </div>
-    <table class="table">
+    <select id="filtro" onchange= "filterTable('week2Table')">
+      <option value="all">Todas as atividades</option>
+      <g:each in="${tags}">
+        <option value="${it}">${it}</option>
+      </g:each>
+    </select>
+    <table class="table" id="week2Table">
         <tr>
+            <th style="display:none;"></th>
             <th>Atividade</th>
             <th>Total de horas</th>
             <th>Prioridade</th>
@@ -158,6 +185,7 @@
         </tr>
         <g:each in="${activitiesWeek2}">
             <tr>
+                <td style="display:none;">${it.tags}</td>
                 <td>${it.title}</td>
                 <td>${it.getInvestedHours()}</td>
                 <td>${it.priority}</td>
