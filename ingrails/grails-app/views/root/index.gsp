@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="layout" content="main">
+    <asset:stylesheet src="index.css" />
     <title>POvMT</title>
 </head>
 
@@ -12,35 +13,23 @@
     <div id="container">
         <div class="container" style="height: 100%">
             <h2 class="centered">Minhas Tarefas</h2>
-            <div class="table-responsive">
-
-                <table class="table">
-                    <tr>
-                        <th>Atividade</th>
-                        <th>Descrição</th>
-                        <th></th>
-                    </tr>
                     <g:each var="activity" in="${activities}">
-                        <tr>
-                            <td><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></td>
-                            <td>${activity.description}</td>
-                            <script>
-                                console.log('${activity.description}');
-                            </script>
-                            <td>
-                                <div class="text-right activity-btns">
-                                    <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn-sm btn-primary add-ti pull-left" title="Add TI">
-                                      <span class="glyphicon glyphicon-time" aria-hidden="true"></a>
-                                    <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn-sm btn-warning pull-left"><span class="glyphicon glyphicon-pencil" aria-hidden="true"  title="Editar Atividade"></span></a>
-                                    <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn-sm btn-danger pull-left"><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Remover Atividade"></a>
-                                </div>
-                            </td>
-                        </tr>
+                      <div id="card" class="container">
+                        <img href="#" data-toggle="modal" data-target="#addTimeModal" src="http://www.w3schools.com/howto/img_avatar.png" class="img-circle">
+                        <h2><b><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></b></h2>
+                        <hr>
+                        <p>${activity.description}</p>
+                        <div class="text-right activity-btns">
+                            <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn-sm btn-primary add-ti pull-left" title="Add TI" style="margin: 1px">
+                              <span class="glyphicon glyphicon-time" aria-hidden="true"></a>
+                            <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn-sm btn-warning pull-left" style="margin: 1px"><span class="glyphicon glyphicon-pencil" aria-hidden="true"  title="Editar Atividade"></span></a>
+                            <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn-sm btn-danger pull-left" style="margin: 1px"><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Remover Atividade"></a>
+                        </div>
+                      </div>
+                    <br>
                     </g:each>
-                </table>
-            </div>
             <br>
-            <a class="btn btn-primary pull-right btn-criar-tarefa" href="${createLink(controller: 'Activity', action: 'create')}">Criar Nova Tarefa </a>
+            <a class="btn btn-primary pull-right btn-criar-tarefa" href="${createLink(controller: 'Activity', action: 'create')}">Criar tarefa </a>
         </div>
 
         <!-- Modal -->
