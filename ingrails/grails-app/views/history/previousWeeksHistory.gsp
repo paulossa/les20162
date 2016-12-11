@@ -72,26 +72,39 @@
         </div>
     </div>
     <br><br>
-    <div class="panel panel-primary">
-      <div class="panel-heading">Total de horas investidas: ${currentWeekHours}</div>
 
-      <div class="panel-body">Esta semana: ${currentWeekHours}</div>
-        <div class="panel-body">Semana passada: ${week1Hours}</div>
-        <div class="panel-body">Semana retrasada: ${week2Hours}</div>
-    </div>
-    <h1 class="text-center">Ranking das atividades:</h1><br>
+    <h1 class="text-center">Relatório de Atividades:</h1><br>
 
     <h1 class="text-center">Semana atual</h1>
-    <table class="table">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Total de horas investidas:</div>
+        <div class="panel-body">
+          <span>Esta semana: ${currentWeekHours}</span> <br>
+          <span>TI em atividades de trabalho: ${hoursByTrabalho}<span> <br>
+          <span>TI em atividades de lazer: ${hoursByLazer}<span>
+        </div>
+    </div>
+    <select id="filtro" onchange= "filterTable('currentWeekTable')">
+      <option value="all">Todas as atividades</option>
+      <g:each in="${tags}">
+        <option value="${it}">${it}</option>
+      </g:each>
+    </select>
+    <table class="table" id="currentWeekTable">
         <tr>
+            <th style="display:none;"></th>
             <th>Atividade</th>
             <th>Total de horas</th>
+            <th>Prioridade</th>
             <th>Proporção</th>
         </tr>
         <g:each in="${currentActivities}">
             <tr>
+                <td style="display:none;">${it.tags}</td>
                 <td>${it.title}</td>
                 <td>${it.getInvestedHours()}</td>
+                <td>${it.priority}</td>
                 <g:if test="${currentWeekHours > 0}">
                     <td>${(it.getInvestedHours()/currentWeekHours).round(3)*100}%</td>
                 </g:if>
@@ -104,16 +117,36 @@
     <br>
 
     <h1 class="text-center">Semana Passada</h1>
-    <table class="table">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Total de horas investidas:</div>
+        <div class="panel-body">
+          <span>Semana passada: ${week1Hours}</span> <br>
+          <span>TI em atividades de trabalho: ${hoursByTrabalho1}<span> <br>
+          <span>TI em atividades de lazer: ${hoursByLazer1}<span>
+        </div>
+    </div>
+
+    <select id="filtro" onchange= "filterTable('week1Table')">
+      <option value="all">Todas as atividades</option>
+      <g:each in="${tags}">
+        <option value="${it}">${it}</option>
+      </g:each>
+    </select>
+    <table class="table" id="week1Table">
         <tr>
+            <th style="display:none;"></th>
             <th>Atividade</th>
             <th>Total de horas</th>
+            <th>Prioridade</th>
             <th>Proporção</th>
         </tr>
         <g:each in="${activitiesWeek1}">
             <tr>
+                <td style="display:none;">${it.tags}</td>
                 <td>${it.title}</td>
                 <td>${it.getInvestedHours()}</td>
+                <td>${it.priority}</td>
                 <g:if test="${week1Hours > 0}">
                     <td>${(it.getInvestedHours()/week1Hours).round(3)*100}%</td>
                 </g:if>
@@ -127,16 +160,35 @@
     <br>
 
     <h1 class="text-center">Semana Retrasada</h1>
-    <table class="table">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Total de horas investidas:</div>
+        <div class="panel-body">
+          <span>Semana retrasada: ${week2Hours}</span> <br>
+          <span>TI em atividades de trabalho: ${hoursByTrabalho2}<span> <br>
+          <span>TI em atividades de lazer: ${hoursByLazer2}<span>
+        </div>
+    </div>
+    <select id="filtro" onchange= "filterTable('week2Table')">
+      <option value="all">Todas as atividades</option>
+      <g:each in="${tags}">
+        <option value="${it}">${it}</option>
+      </g:each>
+    </select>
+    <table class="table" id="week2Table">
         <tr>
+            <th style="display:none;"></th>
             <th>Atividade</th>
             <th>Total de horas</th>
+            <th>Prioridade</th>
             <th>Proporção</th>
         </tr>
         <g:each in="${activitiesWeek2}">
             <tr>
+                <td style="display:none;">${it.tags}</td>
                 <td>${it.title}</td>
                 <td>${it.getInvestedHours()}</td>
+                <td>${it.priority}</td>
                 <g:if test="${week2Hours > 0}">
                     <td>${(it.getInvestedHours()/week2Hours).round(3)*100}%</td>
                 </g:if>

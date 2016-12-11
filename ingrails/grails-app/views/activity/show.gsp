@@ -40,9 +40,13 @@
                             <th>Categoria:</th>
                             <td>${activity.category}</td>
                         </tr>
+                        <tr>
+                            <th>Prioridade:</th>
+                            <td>${activity.priority}</td>
+                        </tr>
                         <!-- <tr>
-                            <th>Tags:</th>
-                            <td>${activity.tags}</td>
+                          <th>Tags:</th>
+                          <td>${activity.tags}</td>
                         </tr> -->
                         <tr>
                             <th>Dono:</th>

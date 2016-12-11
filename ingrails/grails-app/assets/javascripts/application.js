@@ -43,3 +43,30 @@ $(document).ready(function() {
       });
   });
 });
+
+function filterTable(tableId) {
+  // Declare variables
+  console.log(tableId);
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("filtro");
+  filter = input.value.toUpperCase();
+  table = document.getElementById(tableId);
+  tr = table.getElementsByTagName("tr");
+  if(filter == "ALL"){
+    for (i = 0; i < tr.length; i++) {
+      tr[i].style.display = "";
+    }
+    return
+  }
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td != undefined) {
+      if (td.innerHTML.toUpperCase().split(",").indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}

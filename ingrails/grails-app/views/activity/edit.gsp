@@ -36,14 +36,21 @@
 				      <input type="text" name="description" class="form-control" placeholder="Descrição" value="${activity?.description}">
 				    </div>
 						<div class="input-group" style="width: 100%">
+							<div class="input-group-addon"  style="width: 30%">Tags</div>
+							<input type="text" name="description" class="form-control" placeholder="tags" value="${activity?.tags}">
+						</div>
+						<div class="input-group" style="width: 100%">
+							<div class="input-group-addon"  style="width: 30%">Imagem</div>
+							<input type="file" name="image" class="form-control" accept="image/*" capture="camera">
+						</div>
+						<div class="input-group" style="width: 100%">
 				      <div class="input-group-addon" style="width: 30%">Categoria</div>
 							<g:select name="category" class="form-control" from="${['Trabalho', 'Lazer']}" value="${activity?.category}"/>
-				      <!-- <select name="" id=""></select> -->
 				    </div>
-						<div class="input-group" style="width: 100%; display: none">
-				      <div class="input-group-addon" style="width: 30%">Tags</div>
-				      <input type="text" name="description" class="form-control" placeholder="Tags" value="${activity?.tags}">
-				    </div>
+						<div class="input-group" style="width: 100%">
+							<div class="input-group-addon" style="width: 30%">Prioridade</div>
+							<g:select name="priority" class="form-control" from="${['Alta', 'Media', 'Baixa']}" value="${activity?.priority}"/>
+						</div>
 						<input type="submit" class="btn btn-primary btn-lg" value="Salvar" style="width: 100%; margin-top: 40px;">
 					</div>
 				</form>
