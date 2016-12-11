@@ -112,6 +112,8 @@ class UtilService {
     def currentWeekHours = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
     getCurrentWeekActivities(usr).each{
       it.tis.each{
+        println "it = ${it.dump()} | dow = ${getDayOfWeek(it.dateCreated)} "
+
         currentWeekHours[getDayOfWeek(it.dateCreated)] += it.hours
       }
     }
@@ -143,6 +145,7 @@ class UtilService {
       time = date
       get( Calendar.DAY_OF_WEEK )
     }
+    (day - 1)
   }
 
   def getWeek(date){

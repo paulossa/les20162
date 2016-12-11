@@ -13,7 +13,7 @@ class ReminderService {
 			emailService.sendEmail(
 				reminder.email,
 				"Ainda há tempo de permanecer focado, ${reminder.user.dName}.",
-				"Cadastre o tempo que você investiu nas suas atividades ontem. createLink(controller: 'activity', action: 'reminder')"
+				"Cadastre o tempo que você investiu nas suas atividades ontem. <a href=\"http://localhost:8080/root/fromYesterday\"> Cadastre as tarefas de ontem </a>"
 				)
 		}
 	}
