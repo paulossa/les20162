@@ -24,14 +24,20 @@
             <div class="well well-sm text-center">
               Você gostaria de receber lembretes via email?
             </div>
+            <g:if test="${flash.message}">
+              <div class="alert alert-info">
+                ${flash.message}
+              </div>
+            </g:if>
 
-            <form class="form-inline povmt-form" action="#" method="POST">
+            
+            <form class="form-inline povmt-form" action="${createLink(controller: 'user', action: 'setReminder')}" method="POST">
               <div class="input-group">
                 <span class="input-group-addon">
                   <label for="notifications-allowed">Permitir</label>
-                  <input type="checkbox" aria-label="Allow notifications" name="notifications-allowed" ${currentConf.notificationsEnabled ? 'checked': ''}>
+                  <input type="checkbox" aria-label="Allow notifications" name="notifications-allowed" ${currentConf.notificationsEnabled ? 'checked' : ''}>
                 </span>
-                <input type="text" class="form-control" aria-label="..." placeholder="Email" value="${session.user.email}" name="email">
+                <input type="text" class="form-control" aria-label="..." placeholder="Email" value="${currentConf.email}" name="email">
               </div>
               <input type="text" pattern="\d{2}:\d{2}" class="form-control" placeholder="Hora de envio (HH:mm)" value="${currentConf.time}" name="hourOfDay">
               <input type="submit" class="btn btn-primary btn-lg" value="Salvar configuração" style="width: 100%; margin-top: 40px;">

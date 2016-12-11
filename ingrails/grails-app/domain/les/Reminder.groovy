@@ -7,5 +7,6 @@ class Reminder {
     User user
 
     static constraints = {
+    	user unique: true
     }
 }
