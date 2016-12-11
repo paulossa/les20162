@@ -4,6 +4,7 @@ class UserController {
 
     static utilService
     static reminderService
+    static emailService
 
     def index() { }
     def login() {
@@ -11,6 +12,11 @@ class UserController {
         redirect uri: '/'
       }
       render view:'login' , model: [usr: null]
+    }
+
+    def testeEmail() {
+      emailService.sendEmail('paulorugal@gmail.com', 'This is a test', 'this is the message body. we miss you')
+
     }
 
     def setReminder(){
