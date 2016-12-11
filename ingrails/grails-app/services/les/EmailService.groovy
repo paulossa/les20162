@@ -17,4 +17,9 @@ class EmailService {
 			text body.toString()
 		}
 	}
+
+	@NotTransactional
+	String pleseWork(){
+		"I do work. You lucky sonofabitch"
+	}
 }
