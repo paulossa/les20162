@@ -1,5 +1,6 @@
 package les
 
+import static java.util.Calendar.DAY_OF_WEEK
 import grails.transaction.Transactional
 
 @Transactional
@@ -8,7 +9,7 @@ class ReminderService {
 
 	def sendReminders(String time) {
 		assert time ==~ /\d{2}:\d{2}/
-		def reminders = Reminder.findAllByTime(time) // remindersThatShouldBeSent()
+		def reminders = remindersThatShouldBeSent(time)
 		reminders?.each { reminder ->
 			emailService.sendEmail(
 				reminder.email,
@@ -16,6 +17,25 @@ class ReminderService {
 				"Cadastre o tempo que você investiu nas suas atividades ontem. <a href=\"http://localhost:8080/root/fromYesterday\"> Cadastre as tarefas de ontem </a>"
 				)
 		}
+	}
+
+	def remindersThatShouldBeSent(String time){
+		Calendar calendar = Calendar.getInstance()
+		Calendar yesterday = calendar.time.clearTime() - 1
+		def session = RequestContextHolder.currentRequestAttributes().getSession()
+		def c = Activity.createCriteria()
+		def entries = c.list {
+			eq('owner', session.user)
+			tis {
+				gt(dateCreated, yesterday)
+			}
+		}
+
+		if (!entries) {
+			return true
+		}
+
+		return false
 	}
 
 	def cleanReminders(User u) {

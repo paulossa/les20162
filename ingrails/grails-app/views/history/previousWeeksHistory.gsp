@@ -103,10 +103,10 @@
             <tr>
                 <td style="display:none;">${it.tags}</td>
                 <td>${it.title}</td>
-                <td>${it.getInvestedHours()}</td>
+                <td>${it.getInvestedHoursNWeeksAgo(0)}</td>
                 <td>${it.priority}</td>
                 <g:if test="${currentWeekHours > 0}">
-                    <td>${(it.getInvestedHours()/currentWeekHours).round(3)*100}%</td>
+                    <td>${(it.getInvestedHoursNWeeksAgo(0)/currentWeekHours).round(3)*100}%</td>
                 </g:if>
                 <g:else>
                     <td>0</td>
@@ -145,10 +145,10 @@
             <tr>
                 <td style="display:none;">${it.tags}</td>
                 <td>${it.title}</td>
-                <td>${it.getInvestedHours()}</td>
+                <td>${it.getInvestedHoursNWeeksAgo(1)}</td>
                 <td>${it.priority}</td>
                 <g:if test="${week1Hours > 0}">
-                    <td>${(it.getInvestedHours()/week1Hours).round(3)*100}%</td>
+                    <td>${(it.getInvestedHoursNWeeksAgo(1)/week1Hours).round(3)*100}%</td>
                 </g:if>
                 <g:else>
                     <td>0</td>
@@ -187,10 +187,10 @@
             <tr>
                 <td style="display:none;">${it.tags}</td>
                 <td>${it.title}</td>
-                <td>${it.getInvestedHours()}</td>
+                <td>${it.getInvestedHoursNWeeksAgo(2)}</td>
                 <td>${it.priority}</td>
                 <g:if test="${week2Hours > 0}">
-                    <td>${(it.getInvestedHours()/week2Hours).round(3)*100}%</td>
+                    <td>${(it.getInvestedHoursNWeeksAgo(2)/week2Hours).round(3)*100}%</td>
                 </g:if>
                 <g:else>
                     <td>0</td>

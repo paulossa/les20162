@@ -1,5 +1,5 @@
 package les
-
+import static java.util.Calendar.DAY_OF_WEEK
 import grails.transaction.Transactional
 
 @Transactional
@@ -29,12 +29,20 @@ class UtilService {
     }
 
   def getCurrentWeekActivities(User usr){
-    currentDate = new Date().clearTime()
+
     def c = Activity.createCriteria()
+
+    currentDate = new Date().clearTime()
+
+    Calendar calendar = Calendar.getInstance()
+    calendar[DAY_OF_WEEK] = 1
+    Date startOfWeek = calendar.time.clearTime() // sat 00:00
+    calendar[DAY_OF_WEEK] = 7
+    Date endOfWeek = calendar.time.clearTime() + 1
     def results = c.list {
       and {
         tis {
-          between("dateCreated", currentDate-7, currentDate)
+          between("dateCreated", startOfWeek, endOfWeek)
         }
       }
     }
@@ -81,33 +89,15 @@ class UtilService {
   }
 
   def getThisWeekHours(User usr){
-      def total = 0.0d
-      getCurrentWeekActivities(usr).each{
-        it.tis.each{
-          total += it.hours
-        }
-      }
-      total
+      generateCurrentWeekData(usr).sum()
   }
 
   def getWeek1Hours(User usr){
-      def total = 0.0d
-      getWeek1Activities(usr).each{
-        it.tis.each{
-          total += it.hours
-        }
-      }
-      total
+      generateWeek1Data(usr).sum()
   }
 
   def getWeek2Hours(User usr){
-      def total = 0.0d
-      getWeek2Activities(usr).each{
-        it.tis.each{
-          total += it.hours
-        }
-      }
-      total
+      generateWeek2Data(usr).sum()
   }
 
   /**
@@ -116,9 +106,10 @@ class UtilService {
   */
   def generateCurrentWeekData(User usr){
     def currentWeekHours = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
-    getCurrentWeekActivities(usr).each{
+    def actvs = getCurrentWeekActivities(usr)
+    actvs.each{
       it.tis.each{
-        if (getWeek(it.dateCreated)==currentWeek) {
+        if ( getWeek(it.dateCreated) == currentWeek ) {
           currentWeekHours[getDayOfWeek(it.dateCreated)] += it.hours
         }
       }

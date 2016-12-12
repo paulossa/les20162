@@ -8,8 +8,6 @@ class EmailService {
 	static mailService
 	@NotTransactional
 	def sendEmail(String email, String subj, String body){
-		println "Sending mail ? ${mailService.class}"
-
 		mailService.sendMail {
 			to email
 			from 'povmt.noreply@gmail.com'
@@ -18,8 +16,4 @@ class EmailService {
 		}
 	}
 
-	@NotTransactional
-	String pleseWork(){
-		"I do work. You lucky sonofabitch"
-	}
 }
