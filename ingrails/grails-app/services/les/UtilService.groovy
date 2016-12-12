@@ -29,16 +29,6 @@ class UtilService {
     }
 
   def getCurrentWeekActivities(User usr){
-    def activities = []
-    Activity.findAllByOwner(usr).each { activity ->
-      activity.tis.each{
-        if (getWeek(it.dateCreated)==currentWeek && !(activity in activities) ){
-          activities.add(activity)
-        }
-      }
-    }
-
-
     currentDate = new Date().clearTime()
     def c = Activity.createCriteria()
     def results = c.list {
@@ -140,7 +130,9 @@ class UtilService {
     def week1Hours = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
     getWeek1Activities(usr).each{
       it.tis.each{
-        week1Hours[getDayOfWeek(it.dateCreated)] += it.hours
+        if (getWeek(it.dateCreated)==(currentWeek - 1)) {
+          week1Hours[getDayOfWeek(it.dateCreated)] += it.hours
+        }
       }
     }
     week1Hours
@@ -150,7 +142,9 @@ class UtilService {
     def week2Hours = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
     getWeek2Activities(usr).each{
       it.tis.each{
-        week2Hours[getDayOfWeek(it.dateCreated)] += it.hours
+        if (getWeek(it.dateCreated)==(currentWeek - 2)) {
+          week2Hours[getDayOfWeek(it.dateCreated)] += it.hours
+        }
       }
     }
     week2Hours
