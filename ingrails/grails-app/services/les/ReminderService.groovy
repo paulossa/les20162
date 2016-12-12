@@ -13,35 +13,43 @@ class ReminderService {
 		reminders?.each { reminder ->
 			emailService.sendEmail(
 				reminder.email,
-				"Ainda há tempo de permanecer focado, ${reminder.user.dName}.",
-				"Cadastre o tempo que você investiu nas suas atividades ontem. <a href=\"http://localhost:8080/root/fromYesterday\"> Cadastre as tarefas de ontem </a>"
+				"Ainda h\u00E1 tempo de permanecer focado, ${reminder.user.dName}.",
+				"Cadastre o tempo que voc\u00EA investiu nas suas atividades ontem. http://lespiloto.dekorps.com/root/fromYesterday Cadastre as tarefas de ontem"
 				)
 		}
 	}
 
 	// Deve retornar uma lista de objetos Reminder, para os casos onde as pessoas não cadastraram TIs no dia anterior.
 	def remindersThatShouldBeSent(String time){
-		// Métodos de fazer a query para pesquisar no google
-		// executeQuery grails
-		// createCriteria grails
-		// findAllBy grails # Pior opção na minha opinuao
 
-		Calendar calendar = Calendar.getInstance()
-		Calendar yesterday = calendar.time.clearTime() - 1
-		def session = RequestContextHolder.currentRequestAttributes().getSession()
-		def c = Activity.createCriteria()
-		def entries = c.list {
-			eq('owner', session.user)
-			tis {
-				gt(dateCreated, yesterday)
+		def reminders = Reminder.findAllByTime(time)
+
+		def out = []
+		reminders.each { r ->
+			if (!addedTiYesterday(r.user)){
+					out << r
 			}
 		}
 
-		if (!entries) {
-			return Reminder.findAllByOwnerAndTime(session.user, time)
+		return out
+	}
+
+	def addedTiYesterday(User u){
+		def activities = Activity.findAllByOwner(u)
+		def out = false
+
+		def today = new Date().clearTime()
+		def yesterday = today - 1
+
+		activities.each { actvt ->
+			actvt.tis.each { timeInvested ->
+				if ( yesterday.compareTo(timeInvested.dateCreated) * timeInvested.dateCreated.compareTo(today) > 0 ) {
+					out = true
+				}
+			}
 		}
 
-		return false
+		out
 	}
 
 	def cleanReminders(User u) {
