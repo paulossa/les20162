@@ -21,7 +21,6 @@ class ReminderService {
 
 	// Deve retornar uma lista de objetos Reminder, para os casos onde as pessoas não cadastraram TIs no dia anterior.
 	def remindersThatShouldBeSent(String time){
-
 		def reminders = Reminder.findAllByTime(time)
 
 		def out = []
