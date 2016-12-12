@@ -19,7 +19,13 @@ class ReminderService {
 		}
 	}
 
+	// Deve retornar uma lista de objetos Reminder, para os casos onde as pessoas não cadastraram TIs no dia anterior.
 	def remindersThatShouldBeSent(String time){
+		// Métodos de fazer a query para pesquisar no google
+		// executeQuery grails
+		// createCriteria grails
+		// findAllBy grails # Pior opção na minha opinuao
+
 		Calendar calendar = Calendar.getInstance()
 		Calendar yesterday = calendar.time.clearTime() - 1
 		def session = RequestContextHolder.currentRequestAttributes().getSession()
@@ -32,7 +38,7 @@ class ReminderService {
 		}
 
 		if (!entries) {
-			return true
+			return Reminder.findAllByOwnerAndTime(session.user, time)
 		}
 
 		return false
