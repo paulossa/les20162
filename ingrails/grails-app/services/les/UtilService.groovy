@@ -37,7 +37,19 @@ class UtilService {
         }
       }
     }
-    activities
+
+
+    currentDate = new Date().clearTime()
+    def c = Activity.createCriteria()
+    def results = c.list {
+      and {
+        tis {
+          between("dateCreated", currentDate-7, currentDate)
+        }
+      }
+    }
+
+    results
   }
 
   def getWeek1Activities(User usr){
@@ -108,13 +120,17 @@ class UtilService {
       total
   }
 
+  /**
+  * Gets an array with the total hours invested in activities each index
+  * is a day of the week.
+  */
   def generateCurrentWeekData(User usr){
     def currentWeekHours = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
     getCurrentWeekActivities(usr).each{
       it.tis.each{
-        println "it = ${it.dump()} | dow = ${getDayOfWeek(it.dateCreated)} "
-
-        currentWeekHours[getDayOfWeek(it.dateCreated)] += it.hours
+        if (getWeek(it.dateCreated)==currentWeek) {
+          currentWeekHours[getDayOfWeek(it.dateCreated)] += it.hours
+        }
       }
     }
     currentWeekHours
