@@ -42,6 +42,24 @@ $(document).ready(function() {
         // $("#activity-form-dismiss").click();
       });
   });
+
+  $("#reminder-add-ti-btn").on('click', function() {
+    var aid = $("#activity-id-form").val();
+    var hours = $("input[name=ti]") .val();
+    var jqxhr = $.ajax( "/timeInvested/addTiYesterday?activity.id=" + aid + "&hours=" + hours)
+      .done(function() {
+        $("#activity-id-form").val("");
+        $("input[name=ti]") .val("0");
+        location.reload();
+      })
+      .fail(function(data) {
+        alert(data.responseJSON.message);
+      })
+      .always(function() {
+        // $("#activity-form-dismiss").click();
+      });
+
+  });
 });
 
 function filterTable(tableId) {

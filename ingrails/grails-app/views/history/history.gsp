@@ -89,10 +89,10 @@
                     <tr>
                         <td style="display:none;">${it.tags}</td>
                         <td>${it.title}</td>
-                        <td>${it.getInvestedHours()}</td>
+                        <td>${it.getInvestedHoursThisWeek()}</td>
                         <td>${it.priority}</td>
                         <g:if test="${currentWeekHours > 0}">
-                            <td>${(it.getInvestedHours()/currentWeekHours).round(3)*100}%</td>
+                            <td>${(it.getInvestedHoursThisWeek()/currentWeekHours).round(3)*100}%</td>
                         </g:if>
                         <g:else>
                             <td>0</td>

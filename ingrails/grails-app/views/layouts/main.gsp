@@ -32,6 +32,9 @@
                       <a href="${createLink(controller:'history', action:'history')}">Histórico</a>
                   </li>
                   <li>
+                    <a href="${createLink(controller: 'user', action: 'notifications')}">Notificações</a>
+                  </li>
+                  <li>
                       <a href="${createLink(controller: 'user', action: 'logout')}">Logout</a>
                   </li>
               </ul>

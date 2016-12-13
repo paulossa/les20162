@@ -21,6 +21,26 @@ class TimeInvestedController {
     def create() {
         respond new TimeInvested(params)
     }
+    def addTiYesterday() {
+      def a = Activity.findById(params["activity.id"])
+      if (a && params.double('hours') <= 24){
+          def t = new TimeInvested(hours: params.double('hours'), activity: a)
+
+          t.save(flush: true)
+          t.dateCreated = (t.dateCreated - 1)
+          t.save(flush: true)
+
+          response.setContentType("application/json")
+          response.status = 200
+          render '{"message": "Sucesso"}'
+          return
+      } else {
+        response.status = 401
+        response.setContentType("application/json")
+        render '{"message": "Parametros de criação inválidos. O tempo não pode ultrapassar 24 horas"}'
+        return
+      }
+    }
 
     def createTi() {
       def a = Activity.findById(params["activity.id"])

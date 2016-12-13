@@ -3,6 +3,8 @@ package les
 class UserController {
 
     static utilService
+    static reminderService
+    static emailService
 
     def index() { }
     def login() {
@@ -12,15 +14,59 @@ class UserController {
       render view:'login' , model: [usr: null]
     }
 
+    def testeEmail() {
+      emailService.sendEmail('paulorugal@gmail.com', 'This is a test', 'this is the message body. we miss you')
+
+    }
+
+    def setReminder(){
+      String hourOfDay = params?.hourOfDay
+      String email = params?.email 
+      def permission = params.get('notifications-allowed')
+
+      if (hourOfDay ==~ /\d{2}:\d{2}/) {
+
+        def hour = hourOfDay.split(':')[0].toInteger()
+        def minute = hourOfDay.split(':')[1].toInteger()
+
+        if ( (hour > 24 || hour < 0)  || (minute >= 60 || minute < 0)){
+          flash.message = "Hora invalida"
+          forward action: 'notifications'
+          return
+        } 
+      } else {
+        flash.message = "Formato de hora inválido. Use o formato HH:mm."
+      }
+
+      if (!permission) {
+        reminderService.cleanReminders(session.user)
+        flash.message = "Você não receberá mais notificações"
+        forward action: 'notifications'
+      } else {
+        
+        if (Reminder.findByUser(session.user)) {
+          reminderService.cleanReminders(session.user)
+        }
+
+        Reminder r = new Reminder(email: email, time: hourOfDay, user: session.user)
+
+        if (r.hasErrors()) {
+          flash.message = "Erros foram encontrados, por favor tente novamente. [${r.errors}]"
+          forward action: 'notifications'
+        } else {
+          r.save()
+          flash.message = "Lembrete salvo com sucesso."
+          forward action: 'notifications'
+        }
+      }
+    }
+
     def authenticate() {
       def user = User.findByUuid(params.id)
       if (!user) {
         def newUser = new User(givenName: params?.givenName, dName: params?.displayName, picUrl: params?.picUrl, email: params?.email, uuid: params?.id)
         if (newUser.validate()){
           newUser.save(flush:true)
-
-          println "Novo usuário criado"
-          println newUser
         } else {
           response.status = 401
           flash.message = "Seu login é inconsistente."
@@ -29,11 +75,12 @@ class UserController {
 
       session.user = user
 
-
-
       chain controller: "root", action:"index", model: [usr: session.user, activities: utilService.getActivities(session.user)]
-      // TO-DO receive the data and if the user is already created set session.user else Create new user and set session.user
+    }
 
+    def notifications() {
+      def r = Reminder.findByUser(session.user)
+      render view: 'notifications', model: [currentConf: [email: (r?.email == null) ? "${session.user.email}" : "${r.email}", time: r?.time, notificationsEnabled: (r != null)]]
     }
 
     def logout() {
