@@ -9,7 +9,7 @@ class Activity {
   String category
   String tags
   String priority
-
+  byte[] avatar
   User owner
 
   static hasMany = [tis: TimeInvested]
@@ -17,9 +17,14 @@ class Activity {
   static constraints = {
     title unique: true
     category nullable: true, inList : ["Trabalho", "Lazer"]
+    avatar contentType: ['image/jpeg','image/png'], fileSize:15*1024*1024, nullable:true
     tags nullable: true
     description nullable: true
     priority nullable: true, inList :["Alta", "Media", "Baixa"]
+  }
+
+  static mapping = {
+   avatar sqlType:'blob'
   }
 
   Double getInvestedHours(){

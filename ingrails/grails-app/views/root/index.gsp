@@ -15,7 +15,8 @@
             <h2 class="centered">Minhas Tarefas</h2>
                     <g:each var="activity" in="${activities}">
                       <div id="card" class="container">
-                        <img href="#" data-toggle="modal" data-target="#addTimeModal" src="http://www.w3schools.com/howto/img_avatar.png" class="img-circle">
+                        <img src="${createLink(controller: 'Activity', action: 'activityImage', id: activity.id)}" class="img-circle">
+                        <!-- <img href="#" data-toggle="modal" data-target="#addTimeModal" src="http://www.w3schools.com/howto/img_avatar.png" > -->
                         <h2><b><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></b></h2>
                         <hr>
                         <p>${activity.description}</p>

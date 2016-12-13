@@ -26,7 +26,7 @@
 						</g:eachError>
 				</ul>
 				</g:hasErrors>
-				<form class="form-inline povmt-form" action="${createLink(controller: 'Activity', action: 'save')}" method="POST">
+				<form class="form-inline povmt-form" action="${createLink(controller: 'Activity', action: 'save')}" enctype="multipart/form-data" method="POST">
 					<div class="form-group">
 						<input type="hidden" name="owner.id" value="${session.user.id}">
 						<div class="input-group" style="width: 100%">
@@ -43,7 +43,7 @@
 						</div>
 						<div class="input-group" style="width: 100%">
 							<div class="input-group-addon"  style="width: 30%">Imagem</div>
-							<input type="file" name="image" class="form-control" accept="image/*" capture="camera">
+							<input type="file" name="avatar" class="form-control" accept="image/*" capture="camera">
 						</div>
 						<div class="input-group" style="width: 100%">
 				      <div class="input-group-addon" style="width: 30%">Categoria</div>

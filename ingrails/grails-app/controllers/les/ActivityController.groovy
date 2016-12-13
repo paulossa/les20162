@@ -34,7 +34,6 @@ class ActivityController {
             return
         }
 
-
         activity.owner = User.findById(session.user.id)
 
         if (activity.hasErrors()) {
@@ -42,6 +41,8 @@ class ActivityController {
             respond activity.errors, view:'create'
             return
         }
+
+
 
         activity.save flush:true
 
@@ -105,5 +106,12 @@ class ActivityController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def activityImage(Activity activity) {
+      response.setHeader("Content-disposition", "attachment;")
+      response.setContentType("image/png")
+      response.outputStream << activity?.avatar //'myphoto.jpg' will do too
+      response.outputStream.flush()
     }
 }
