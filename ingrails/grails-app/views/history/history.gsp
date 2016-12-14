@@ -80,8 +80,8 @@
             </select>
             <table class="table" id="historyTable">
                 <tr>
-                    <th style="display:none;"></th>
-                    <th><th>
+                    <th style="display:none;">TAG</th>
+                    <th></th>
                     <th>Atividade</th>
                     <th>Total de horas</th>
                     <th>Prioridade</th>
