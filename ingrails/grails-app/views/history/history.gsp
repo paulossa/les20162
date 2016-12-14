@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="layout" content="main">
     <title>Histórico</title>
+    <asset:stylesheet src="index.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -80,6 +81,7 @@
             <table class="table" id="historyTable">
                 <tr>
                     <th style="display:none;"></th>
+                    <th><th>
                     <th>Atividade</th>
                     <th>Total de horas</th>
                     <th>Prioridade</th>
@@ -88,6 +90,14 @@
                 <g:each in="${activities}">
                     <tr>
                         <td style="display:none;">${it.tags}</td>
+                        <td>
+                          <g:if test="${it.avatar != null}">
+                            <img src="${createLink(controller: 'Activity', action: 'activityImage', id: it.id)}" class="img-circle">
+                          </g:if>
+                          <g:else>
+                            <img href="#" data-toggle="modal" data-target="#addTimeModal" class="img-circle" src="https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg">
+                          </g:else>
+                        </td>
                         <td>${it.title}</td>
                         <td>${it.getInvestedHoursThisWeek()}</td>
                         <td>${it.priority}</td>
