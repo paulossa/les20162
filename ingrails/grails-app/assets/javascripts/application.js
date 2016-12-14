@@ -68,14 +68,17 @@ function filterTable(tableId) {
   var input, filter, table, tr, td, i;
   input = document.getElementById("filtro");
   filter = input.value.toUpperCase();
+  marker = document.getElementById("group_marker");
   table = document.getElementById(tableId);
   tr = table.getElementsByTagName("tr");
   if(filter == "ALL"){
     for (i = 0; i < tr.length; i++) {
       tr[i].style.display = "";
+      marker.innerHTML = "";
     }
     return
   }
+  marker.innerHTML = "" + filter;
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
