@@ -35,6 +35,9 @@ class ActivityController {
         }
 
         activity.owner = User.findById(session.user.id)
+        if (activity.avatar == []){
+          activity.avatar = null
+        }
 
         if (activity.hasErrors()) {
             transactionStatus.setRollbackOnly()

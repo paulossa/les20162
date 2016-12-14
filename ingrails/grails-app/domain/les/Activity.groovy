@@ -17,7 +17,7 @@ class Activity {
   static constraints = {
     title unique: true
     category nullable: true, inList : ["Trabalho", "Lazer"]
-    avatar contentType: ['image/jpeg','image/png'], fileSize:15*1024*1024, nullable:true
+    avatar nullable: true, contentType: ['image/jpeg','image/png'], fileSize:15*1024*1024
     tags nullable: true
     description nullable: true
     priority nullable: true, inList :["Alta", "Media", "Baixa"]

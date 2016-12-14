@@ -15,8 +15,12 @@
             <h2 class="centered">Minhas Tarefas</h2>
                     <g:each var="activity" in="${activities}">
                       <div id="card" class="container">
-                        <img src="${createLink(controller: 'Activity', action: 'activityImage', id: activity.id)}" class="img-circle">
-                        <!-- <img href="#" data-toggle="modal" data-target="#addTimeModal" src="http://www.w3schools.com/howto/img_avatar.png" > -->
+                        <g:if test="${activity.avatar != null}">
+                          <img src="${createLink(controller: 'Activity', action: 'activityImage', id: activity.id)}" class="img-circle">
+                        </g:if>
+                        <g:else>
+                          <img href="#" data-toggle="modal" data-target="#addTimeModal" class="img-circle" src="https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg">
+                        </g:else>
                         <h2><b><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></b></h2>
                         <hr>
                         <p>${activity.description}</p>
