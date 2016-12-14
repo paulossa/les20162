@@ -77,9 +77,10 @@ function filterTable(tableId) {
       marker.innerHTML = "";
     }
     return
-  }else {
-    marker.innerHTML = "Agrupado por" + filter;
   }
+
+  marker.innerHTML = "Agrupado por" + filter;
+  
   
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
