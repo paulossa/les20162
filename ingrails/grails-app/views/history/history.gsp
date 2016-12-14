@@ -77,7 +77,7 @@
               <g:each in="${tags}">
                 <option value="${it}">${it}</option>
               </g:each>
-            </select>
+            </select> <span id="group_mark"></span>
             <table class="table" id="historyTable">
                 <tr>
                     <th style="display:none;"></th>
