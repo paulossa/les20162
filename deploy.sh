@@ -12,7 +12,7 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
 sudo -u postgres psql -c "create user postgres with password 'postgres';"
-sudo -u postgres psql -c "create database povmt owner usuario encoding 'utf-8';"
-sudo -u postgres psql -c "create database syscit_dev owner usuario encoding 'utf-8';"
+sudo -u postgres psql -c "create database povmt owner postgres encoding 'utf-8';"
+sudo -u postgres psql -c "create database syscit_dev owner postgres encoding 'utf-8';"
 
 grails run-app
