@@ -37,7 +37,7 @@
 				    </div>
 						<div class="input-group" style="width: 100%">
 							<div class="input-group-addon"  style="width: 30%">Tags</div>
-							<input type="text" name="description" class="form-control" placeholder="tags" value="${activity?.tags}">
+							<input type="text" name="tags" class="form-control" placeholder="tags" value="${activity?.tags}">
 						</div>
 						<div class="input-group" style="width: 100%">
 							<div class="input-group-addon"  style="width: 30%">Imagem</div>
