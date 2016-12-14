@@ -86,6 +86,7 @@
           <span>TI em atividades de lazer: ${hoursByLazer}<span>
         </div>
     </div>
+    <span>Filtrar por: </span>
     <select id="filtro" onchange= "filterTable('currentWeekTable')">
       <option value="all">Todas as atividades</option>
       <g:each in="${tags}">
@@ -136,7 +137,7 @@
           <span>TI em atividades de lazer: ${hoursByLazer1}<span>
         </div>
     </div>
-
+    <span>Filtrar por: </span>
     <select id="filtro" onchange= "filterTable('week1Table')">
       <option value="all">Todas as atividades</option>
       <g:each in="${tags}">
@@ -188,6 +189,7 @@
           <span>TI em atividades de lazer: ${hoursByLazer2}<span>
         </div>
     </div>
+    <span>Filtrar por: </span>
     <select id="filtro" onchange= "filterTable('week2Table')">
       <option value="all">Todas as atividades</option>
       <g:each in="${tags}">

@@ -71,7 +71,7 @@
             </div>
 
             <h1 class="text-center">Ranking das atividades:</h1>
-            <span>Filtrar</span>
+            <span>Filtrar por: </span>
             <select id="filtro" onchange="filterTable('historyTable')">
               <option value="all">Todas as atividades</option>
               <g:each in="${tags}">
