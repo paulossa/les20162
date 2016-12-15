@@ -85,6 +85,7 @@ class UtilService {
         }
       }
     }
+    println total
     total
   }
 

@@ -6,7 +6,7 @@ class HistoryController {
     def currentDate = new Date().clearTime()
     int currentWeek = Calendar.instance.with {
       time = currentDate
-      get( Calendar.WEEK_OF_MONTH )
+      get( Calendar.WEEK_OF_YEAR )
     }
 
     def history() {
