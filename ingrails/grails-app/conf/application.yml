@@ -21,11 +21,11 @@ environments:
     test:
         dataSource:
             dbCreate: update
-            url: jdbc:postgresql://localhost:5432/syscit_dev
+            url: jdbc:postgresql://localhost:5432/povmt_test
     production:
         dataSource:
             dbCreate: update
-            url: jdbc:postgresql://localhost:5432/syscit_dev
+            url: jdbc:postgresql://localhost:5432/povmt
             properties:
                 jmxEnabled: true
                 initialSize: 5

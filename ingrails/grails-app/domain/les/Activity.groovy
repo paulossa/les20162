@@ -24,7 +24,7 @@ class Activity {
   }
 
   static mapping = {
-   avatar sqlType:'blob'
+   avatar sqlType:'bytea'
   }
 
   Double getInvestedHours(){
