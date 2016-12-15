@@ -12,23 +12,18 @@
 <body>
     <div id="container">
         <div class="container" style="height: 100%">
-            <h2 class="centered">Minhas Tarefas</h2>
+            <h2 class="centered">Minhas Tarefas <strong> (adicionar tempo de ontem) </strong></h2>
                     <g:each var="activity" in="${activities}">
                       <div id="card" class="container">
-                        <g:if test="${activity.avatar != null}">
-                          <img src="${createLink(controller: 'Activity', action: 'activityImage', id: activity.id)}" class="img-circle">
-                        </g:if>
-                        <g:else>
-                          <img href="#" data-toggle="modal" data-target="#addTimeModal" class="img-circle" src="https://thesocietypages.org/socimages/files/2009/05/vimeo.jpg">
-                        </g:else>
-                        <h2><b><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title">${activity.title}</a></b></h2>
+                        <img href="#" data-toggle="modal" data-target="#addTimeModal" src="http://www.w3schools.com/howto/img_avatar.png" class="img-circle">
+                        <h2><b><a href="${createLink(controller: 'activity', action: 'show', id: activity.id)}" class="title disabled">${activity.title}</a></b></h2>
                         <hr>
                         <p>${activity.description}</p>
                         <div class="text-right activity-btns">
                             <a href="#" data-toggle="modal" data-target="#addTimeModal" id="addTI" data-activityId=${activity.id} class="btn-sm btn-primary add-ti pull-left" title="Add TI" style="margin: 1px">
                               <span class="glyphicon glyphicon-time" aria-hidden="true"></a>
-                            <a href="${createLink(controller: 'activity', action: 'edit', id: activity.id)}" class="btn-sm btn-warning pull-left" style="margin: 1px"><span class="glyphicon glyphicon-pencil" aria-hidden="true"  title="Editar Atividade"></span></a>
-                            <a href="${createLink(controller: 'activity', action: 'delete', id: activity.id)}" class="btn-sm btn-danger pull-left" style="margin: 1px"><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Remover Atividade"></a>
+                            <a href="#" class="disabled btn-sm btn-warning pull-left" style="margin: 1px"><span class="glyphicon glyphicon-pencil" aria-hidden="true"  title="Editar Atividade"></span></a>
+                            <a href="#" class="disabled btn-sm btn-danger pull-left" style="margin: 1px"><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Remover Atividade"></a>
                         </div>
                       </div>
                     <br>
@@ -58,7 +53,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" id="activity-form-dismiss">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="activity-id-form-btn">Submeter</button>
+                        <button type="button" class="btn btn-primary" id="reminder-add-ti-btn">Submeter</button>
                     </div>
                 </div>
             </div>

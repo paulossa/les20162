@@ -48,6 +48,16 @@ environments:
 ---
 ---
 grails:
+    mail:
+        host: "smtp.gmail.com"
+        port:  25
+        username : "povmt.noreply@gmail.com"
+        password : "88tempo88"
+        props:
+            mail.smtp.auth: "true"
+            mail.smtp.socketFactory.port: "465"
+            mail.smtp.socketFactory.class: "javax.net.ssl.SSLSocketFactory"
+            mail.smtp.socketFactory.fallback: "false"
     profile: web
     codegen:
         defaultPackage: ingrails
@@ -108,6 +118,9 @@ grails:
             maxsize: 1000
     controllers:
         defaultScope: singleton
+        upload:
+            maxFileSize: 25242880
+            maxRequestSize: 25242880
     converters:
         encoding: UTF-8
     views:
