@@ -12,7 +12,7 @@ class UtilService {
     def getAllTags(User usr){
       def tags = []
       getActivities(usr).each{activity ->
-        if(activity.tags != null){
+        if(activity.tags != null && !(activity.tags in tags)) {
           activity.tags.split(",").each{
             tags.add(it);
           }
